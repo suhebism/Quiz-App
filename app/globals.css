@@ -25,3 +25,20 @@ body {
     text-wrap: balance;
   }
 }
+
+
+.quiz-card {
+  padding: 10px;
+  background-color: #8fcf87; /* Main green background */
+  border-radius: 12px;
+}
+
+.level-block {
+  width: 32px;
+  height: 32px;
+  border: 2px solid black;
+}
+
+.bg-black {
+  background-color: black;
+}

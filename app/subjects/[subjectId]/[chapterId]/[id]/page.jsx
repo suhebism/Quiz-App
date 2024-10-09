@@ -2,6 +2,10 @@
 import { usePathname, useRouter } from 'next/navigation';
 import quizData from '../../../../../data/quizData'; // Adjust the path as necessary
 import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Scale, X } from 'lucide-react';
+
+
 
 export default function QuizPage() {
   const pathname = usePathname(); // Get the current pathname
@@ -12,7 +16,7 @@ export default function QuizPage() {
   const [loadingSubject, setLoadingSubject] = useState(true);
   const [loadingChapter, setLoadingChapter] = useState(true);
   const [loadingLevel, setLoadingLevel] = useState(true);
-
+  const [prompt, setPrompt] = useState (false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Track current question index
   const [selectedAnswer, setSelectedAnswer] = useState(null); // Track selected answer
   const [score, setScore] = useState(0); // Track score
@@ -151,10 +155,50 @@ export default function QuizPage() {
     return <div>Level not found!</div>;
   }
 
+  
+ 
+  const promptToClose =()=>{
+    setPrompt(true);
+  }
+  const confirmExit=(choice)=>{
+    if (choice ==='yes'){
+      router.push('/');
+    } else{
+      setPrompt(false);
+    }
+  }
   return (
-    <div>
+    <motion.div 
+    initial={{ opacity: 0 }} // Initial state (hidden)
+    animate={{ opacity: 1 }} // End state (visible)
+    transition={{ duration: 0.5 }} // Transition duration
+    className="flex flex-col items-center h-screen pt-5 pb-10 justify-between">
+      <X className="fixed top-5 left-5 text-white cursor-pointer" onClick={promptToClose}/>
       <h1>{subject.name} - {chapter.name} - {level.name} Quiz</h1>
-
+      <AnimatePresence>
+      {prompt &&(    
+          <div
+          className='fixed z-50 h-screen w-screen bg-opacity-50 backdrop-blur-md  text-white flex items-center justify-center transition ease-in-out delay-500 duration-500'
+          onClick={() => setPrompt(false)} // Close modal when clicking outside
+          >
+          <motion.div
+            initial={{ y: -200 }}
+            animate={{ y: 0 }}
+            exit={{ y: -200 }} // Exit animation
+            transition={{ duration: 0.2, ease: "easeInOut" }} // Adjust duration for exit animation
+            className='absolute -top-5 h-[160px] w-screen bg-[#75BC7B] flex flex-col items-center justify-around rounded-b-3xl'
+            onClick={(e) => e.stopPropagation()} // Prevent click from propagating to the backdrop
+          >
+            <h1 className='font-semibold text-lg text-black'>Do you really want to exit?</h1>
+            <div className='flex gap-5'>
+              <button className='w-28 h-10 bg-white text-black font-bold text-lg rounded-full' onClick={() => confirmExit('yes')}>Yes</button>
+              <button className='w-28 h-10 bg-black text-white font-bold text-lg rounded-full' onClick={() => confirmExit('no')}>No</button>
+            </div>
+          </motion.div>
+        </div>
+        )
+      }
+      </AnimatePresence>
       {showResult ? (
         <>
           <div>
@@ -193,6 +237,6 @@ export default function QuizPage() {
           </button>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

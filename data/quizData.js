@@ -11,7 +11,7 @@ const quizData = {
             levels: [
               {
                 id: 'level1',
-                name: 'Basic Algebra',
+                name: 'Beginner',
                 questions: [
                   {
                     question: 'What is 2 + 2?',
@@ -42,7 +42,7 @@ const quizData = {
               },
               {
                 id: 'level2',
-                name: 'Intermediate Algebra',
+                name: 'Intermediate',
                 questions: [
                   {
                     question: 'What is the value of x if 2x + 3 = 7?',
@@ -71,6 +71,37 @@ const quizData = {
                   },
                 ],
               },
+              {
+                id: 'level3',
+                name: 'Advance',
+                questions: [
+                  {
+                    question: 'What is 2 + 4?',
+                    options: ['3', '4', '5', '6'],
+                    answer: '6',
+                  },
+                  {
+                    question: 'What is 3 * 3?',
+                    options: ['6', '7', '8', '9'],
+                    answer: '9',
+                  },
+                  {
+                    question: 'What is 5 - 2?',
+                    options: ['2', '3', '4', '5'],
+                    answer: '3',
+                  },
+                  {
+                    question: 'What is 6 / 2?',
+                    options: ['2', '3', '4', '5'],
+                    answer: '3',
+                  },
+                  {
+                    question: 'What is the square root of 16?',
+                    options: ['2', '4', '8', '16'],
+                    answer: '4',
+                  },
+                ],
+              },
               // Add more levels here...
             ],
           },
@@ -80,7 +111,7 @@ const quizData = {
             levels: [
               {
                 id: 'level1',
-                name: 'Basic Geometry',
+                name: 'Beginner',
                 questions: [
                   {
                     question: 'What is the area of a rectangle with length 5 and width 4?',
@@ -124,7 +155,7 @@ const quizData = {
             levels: [
               {
                 id: 'level1',
-                name: 'Basic Physics',
+                name: 'Beginner',
                 questions: [
                   {
                     question: 'What is the unit of force?',
@@ -162,7 +193,7 @@ const quizData = {
             levels: [
               {
                 id: 'level1',
-                name: 'Basic Chemistry',
+                name: 'Beginner',
                 questions: [
                   {
                     question: 'What is the chemical symbol for water?',
