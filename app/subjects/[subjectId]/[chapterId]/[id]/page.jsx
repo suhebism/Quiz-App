@@ -232,7 +232,9 @@ export default function QuizPage() {
           </ul>
 
           {/* Submit button */}
-          <button onClick={handleAnswerSubmit} disabled={selectedAnswer === null}>
+          <button className={` bottom-5 w-[350px] h-14 font-bold rounded-full bg-green-500 text-white transition-all duration-300 ${
+                  selectedAnswer === null ? 'opacity-50 cursor-not-allowed' : 'opacity-100'
+                }`} onClick={handleAnswerSubmit} disabled={selectedAnswer === null}>
             Submit Answer
           </button>
         </div>
