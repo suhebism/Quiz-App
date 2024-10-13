@@ -208,16 +208,20 @@ export default function QuizPage() {
           <button onClick={handleNextLevel}>Next Level</button> {/* Call handleNextLevel on click */}
         </>
       ) : (
-        <div>
+        <div className='flex flex-col justify-between h-full'>
           {/* Show current question */}
-          <h2>Question {currentQuestionIndex + 1} of {level.questions.length}</h2>
+          <h2 className="text-white text-xl text-center font-semibold h-10">Question {currentQuestionIndex + 1} of {level.questions.length}</h2>
           <p>{level.questions[currentQuestionIndex].question}</p>
 
           {/* Render options for the current question */}
-          <ul>
+          <ul className='flex flex-col gap-10 w-full'>
             {level.questions[currentQuestionIndex].options.map((option, index) => (
               <li key={index}>
-                <label>
+                <label className={`py-3 px-5 w-[350px] border-[1px] rounded-full text-white focus:outline-none transition-all duration-300 ${
+                    selectedAnswer === index
+                      ? 'border-green-400 text-green-400'
+                      : 'border-gray-500 text-gray-500'
+                  }`}>
                   <input
                     type="radio"
                     name="answer"
