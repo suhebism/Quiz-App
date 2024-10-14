@@ -46,9 +46,9 @@ const Nav = () => {
             <X className="text-white fixed top-2 right-5 cursor-pointer" onClick={()=>(setToggle(false))}/>
             <UserAvatar/>
             <div className="flex flex-col ga-10 w-full items-start px-3  gap-4">
-              <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
+              <Link href='/subjects' className="text-white font-semibold text-lg flex gap-2">
               <BookMarked />
-              <h1>Topics</h1>
+              <h1>Subjects</h1>
               </Link>
               <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
               <Medal />

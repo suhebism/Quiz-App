@@ -3,7 +3,7 @@ import { usePathname, useRouter } from "next/navigation";
 import quizData from "../../../../../data/quizData"; // Adjust the path as necessary
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Scale, X, Info, MoveLeft } from "lucide-react";
+import { Scale, X, Info, MoveLeft, Link } from "lucide-react";
 import congratulations from '@/public/animation/congratulations.json'
 import loader from '@/public/animation/loader.json'
 import LottieAnimations from "@/components/LottieAnimations";
@@ -144,6 +144,7 @@ export default function QuizPage() {
     } else {
       // If there are no more levels, navigate back or display a message
       alert("You've completed all levels in this chapter!");
+      router.push(`/subjects/`);
       // Optionally, navigate back to the chapter or subject
       // router.push(`/${subject.id}/${chapter.id}`);
     }

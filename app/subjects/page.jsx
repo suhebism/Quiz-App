@@ -1,21 +1,38 @@
+'use client'
 import React from 'react'
 import quizData from "../../data/quizData";
 import Link from 'next/link';
-
+import Image from 'next/image';
+import { MoveLeft } from 'lucide-react';
+import bird from '@/public/img/bird.png'
+import { Search } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 const page = () => {
+  const router = useRouter();
+  const backToHome=()=>{
+    router.push('/')
+  }
   return (
-    <div>
-      <h1>Choose a Subject</h1>
-      <ul>
+    <motion.div className='max-w-sm mx-auto  mt-5 flex flex-col gap-5 px-5'>
+      <MoveLeft color='white' onClick={backToHome} className=''/>
+      <div className='flex items-center justify-between'>
+        <h1 className='text-white'>Select a Topic</h1>
+        <Search color='white'/>
+      </div>
+      <ul className='max-w-sm flex flex-wrap gap-5'>
         {quizData.subjects.map((subject) => (
-          <li key={subject.id}>
+          <li key={subject.id} >
             <Link href={`/subjects/${subject.id}`}>
-              <div>{subject.name}</div>
+              <Image  src={subject.img} width={100} height={100} className='w-40 h-40 rounded-lg object-cover'/>
+              <div className='text-white font-semibold'>{subject.name}</div>
+              <p className='text-xs text-[#A9A9A9]'>Sub topics : {subject.chapters ? subject.chapters.length : 0}</p>
+              <p className='text-xs text-[#A9A9A9]'>Level : Beginner to Advance</p>
             </Link>
           </li>
         ))}
       </ul>
-    </div>
+    </motion.div>
   )
 }
 
