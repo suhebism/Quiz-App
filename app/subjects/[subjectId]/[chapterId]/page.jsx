@@ -1,6 +1,6 @@
 "use client"
 // app/subjects/[subjectId]/[chapterId]/page.jsx
-import { usePathname } from 'next/navigation';
+import { usePathname,useRouter } from 'next/navigation';
 import quizData from '../../../../data/quizData'; // Adjust path if necessary
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -14,7 +14,7 @@ export default function LevelList() {
   const [subject, setSubject] = useState(null);
   const [chapter, setChapter] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const router =useRouter();
   useEffect(() => {
     // Split pathname to get subjectId and chapterId
     const segments = pathname.split('/'); // Assuming structure is /subjects/[subjectId]/[chapterId]
@@ -50,30 +50,27 @@ export default function LevelList() {
   }
 
   if (!subject) {
-    return <div>Subject not found!</div>;
+    return <div className='flex items-center justify-center text-white'>Subject not found!</div>;
   }
 
   if (!chapter) {
-    return <div>Chapter not found!</div>;
+    return <div className='flex items-center justify-center text-white'>Chapter not found!</div>;
   }
-
+  const backToHome = () => {
+    router.push(`/subjects/${subject.id}`);
+  };
   return (
-    <div className='max-w-sm mx-auto flex flex-col mt-2 gap-5 px-5'>
+    <div className='max-w-sm mx-auto flex flex-col items-center mt-2 gap-5 px-5'>
       <div className="w-full flex items-center justify-between gap-5">
-        <MoveLeft color="white" 
-        // onClick={backToHome} 
-        className="" />
+        <MoveLeft color="white" onClick={backToHome} className=""/>
         <h1 className="text-white text-xl font-bold text-center">{subject.name} - {chapter.name}</h1>
-        <Info className=" text-white cursor-pointer"
-        // onClick={infoToOPen}
-        />
+        <Info className=" text-white cursor-pointer" onClick={infoToOPen}/>
       </div>
-        <Image src={chapter.img} width={100} height={100} className='w-44 h-56 rounded-lg object-cover'/>
-      <ul>
+      <Image src={chapter.img} width={100} height={100} className='w-44 h-56 rounded-lg object-cover'/>
+      <ul className='w-full'>
         {chapter.levels.map((level) => (
           <li key={level.id}>
             <Link href={`/subjects/${subject.id}/${chapter.id}/${level.id}`}>
-
               {level.name}
             </Link>
           </li>

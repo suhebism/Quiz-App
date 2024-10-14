@@ -48,7 +48,7 @@ export default function ChapterList() {
   }
 
   if (!subject) {
-    return <div>Subject not found!</div>;
+    return <div className='flex items-center justify-center text-white'>Subject not found!</div>;
   }
   const backToHome=()=>{
     router.push('/subjects')
