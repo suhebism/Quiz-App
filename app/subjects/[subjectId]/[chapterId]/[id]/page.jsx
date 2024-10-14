@@ -246,13 +246,13 @@ export default function QuizPage() {
       </AnimatePresence>
       {showResult ? (
         <>
-          <div>
-            <h2>Quiz Complete!</h2>
-            <p>
+          <div className="text-center flex flex-col justify-center items-center h-screen">
+            <h2 className="text-white font-bold text-lg">Quiz Complete!</h2>
+            <p className="text-white font-bold text-lg m-auto">
               Your score is: {score} / {level.questions.length}
             </p>
           </div>
-          <button onClick={handleNextLevel}>Next Level</button>{" "}
+          <button onClick={handleNextLevel} className="bottom-5 w-[350px] h-14 font-bold rounded-full bg-green-500 text-white" >Next Level</button>{" "}
           {/* Call handleNextLevel on click */}
         </>
       ) : (
