@@ -4,6 +4,12 @@ import quizData from "../../../../../data/quizData"; // Adjust the path as neces
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Scale, X, Info, MoveLeft } from "lucide-react";
+import congratulations from '@/public/animation/congratulations.json'
+import loader from '@/public/animation/loader.json'
+import LottieAnimations from "@/components/LottieAnimations";
+import Image from "next/image";
+import bird from '@/public/img/bird.png'
+
 
 export default function QuizPage() {
   const pathname = usePathname(); // Get the current pathname
@@ -144,7 +150,7 @@ export default function QuizPage() {
   };
 
   if (loadingSubject || loadingChapter || loadingLevel) {
-    return <div className="text-white flex items-center justify-center">Loading...</div>;
+    return <div className="text-white flex items-center justify-center"><LottieAnimations animationData={loader} /></div>;
   }
 
   if (!subject) {
@@ -252,17 +258,18 @@ export default function QuizPage() {
               Your score is: {score} / {level.questions.length}
             </p>
           </div>
+          <LottieAnimations animationData={congratulations} />
           <button onClick={handleNextLevel} className="bottom-5 w-[350px] h-14 font-bold rounded-full bg-green-500 text-white" >Next Level</button>{" "}
           {/* Call handleNextLevel on click */}
         </>
       ) : (
-        <div className="flex flex-col justify-between h-full text-center">
+        <div className="flex flex-col items-center justify-between h-full text-center">
           {/* Show current question */}
           <h2 className="text-white text-xl text-center font-semibold h-10">
             Question {currentQuestionIndex + 1} of {level.questions.length}
           </h2>
           <p className="text-lg font-bold text-white">{level.questions[currentQuestionIndex].question}</p>
-
+          <Image src={bird} />
           {/* Render options for the current question */}
           <ul className="flex flex-col gap-5">
             {level.questions[currentQuestionIndex].options.map(

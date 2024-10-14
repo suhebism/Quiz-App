@@ -1,8 +1,7 @@
 'use client'
 import React,{useState, useEffect} from "react";
-import user from '../public/img/user.png';
 import Avatar from '@mui/material/Avatar';
-import { BellDot,BookMarked,Medal,LibraryBig,HandHelping,Share,Blocks,LogOut } from "lucide-react";
+import { BellDot,BookMarked,Medal,LibraryBig,HandHelping,Share,Blocks,LogOut, X } from "lucide-react";
 import { motion, AnimatePresence  } from "framer-motion"
 import UserAvatar from '../components/UserAvatar';
 import Link from "next/link";
@@ -44,9 +43,9 @@ const Nav = () => {
         exit={{ x: -500 }}
         transition={{ ease: "easeInOut", duration: 0.5 }}
         className="fixed w-full max-w-sm mx-auto px-5 h-screen bg-[#161515] bg-opacity-10 flex flex-col items-center backdrop-blur-lg z-10 top-0">
-            <div className="text-white fixed top-2 right-2 cursor-pointer" onClick={()=>(setToggle(false))}>Close</div>
+            <X className="text-white fixed top-2 right-5 cursor-pointer" onClick={()=>(setToggle(false))}/>
             <UserAvatar/>
-            <div className="flex flex-col ga-10 w-full items-start px-5 gap-4">
+            <div className="flex flex-col ga-10 w-full items-start px-3  gap-4">
               <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
               <BookMarked />
               <h1>Topics</h1>
