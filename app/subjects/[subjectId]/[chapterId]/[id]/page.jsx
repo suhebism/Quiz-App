@@ -246,7 +246,7 @@ export default function QuizPage() {
       </AnimatePresence>
       {showResult ? (
         <>
-          <div className="text-center flex flex-col justify-center items-center h-screen">
+          <div className="text-center flex flex-col justify-center items-center ">
             <h2 className="text-white font-bold text-lg">Quiz Complete!</h2>
             <p className="text-white font-bold text-lg m-auto">
               Your score is: {score} / {level.questions.length}
