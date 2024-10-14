@@ -3,7 +3,7 @@ import { usePathname, useRouter } from "next/navigation";
 import quizData from "../../../../../data/quizData"; // Adjust the path as necessary
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Scale, X } from "lucide-react";
+import { Scale, X, Info, MoveLeft } from "lucide-react";
 
 export default function QuizPage() {
   const pathname = usePathname(); // Get the current pathname
@@ -19,6 +19,7 @@ export default function QuizPage() {
   const [selectedAnswer, setSelectedAnswer] = useState(null); // Track selected answer
   const [score, setScore] = useState(0); // Track score
   const [showResult, setShowResult] = useState(false); // Show results at the end
+  const [info, setInfo] = useState(false);
 
   useEffect(() => {
     const segments = pathname.split("/").filter(Boolean); // Split the pathname and remove empty segments
@@ -143,7 +144,7 @@ export default function QuizPage() {
   };
 
   if (loadingSubject || loadingChapter || loadingLevel) {
-    return <div>Loading...</div>;
+    return <div className="text-white flex items-center justify-center">Loading...</div>;
   }
 
   if (!subject) {
@@ -168,6 +169,12 @@ export default function QuizPage() {
       setPrompt(false);
     }
   };
+  const infoToClose =()=>{
+    setInfo(false);
+  }
+  const infoToOPen =()=>{
+    setInfo(true);
+  }
   return (
     <motion.div
       initial={{ opacity: 0 }} // Initial state (hidden)
@@ -179,9 +186,29 @@ export default function QuizPage() {
         className="fixed top-5 left-5 text-white cursor-pointer"
         onClick={promptToClose}
       />
-      <h1>
-        {subject.name} - {chapter.name} - {level.name} Quiz
-      </h1>
+      <Info className="fixed top-5 right-5 text-white cursor-pointer"
+        onClick={infoToOPen}/>
+        <AnimatePresence>
+        {info && (
+          <motion.div 
+          initial={{ y: 600 }}
+          animate={{ y: 0 }}
+          exit={{ y: 600 }} // Exit animation
+          transition={{ duration: 0.2, ease: "easeInOut" }} 
+          className="fixed px-5 pt-5 bottom-0 h-screen w-screen bg-[#161515] z-50">
+            <MoveLeft onClick={infoToClose} color="white" className="cursor-pointer"/>
+            <div className="flex items-center justify-between">
+              <h1 className="text-white">
+                {subject.name} - {chapter.name} 
+              </h1>
+              <h1 className="text-white text-xs font-light">
+                {level.name}
+              </h1>
+
+            </div>
+          </motion.div>
+        )}
+        </AnimatePresence>
       <AnimatePresence>
         {prompt && (
           <div
@@ -229,12 +256,12 @@ export default function QuizPage() {
           {/* Call handleNextLevel on click */}
         </>
       ) : (
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between h-full text-center">
           {/* Show current question */}
           <h2 className="text-white text-xl text-center font-semibold h-10">
             Question {currentQuestionIndex + 1} of {level.questions.length}
           </h2>
-          <p>{level.questions[currentQuestionIndex].question}</p>
+          <p className="text-lg font-bold text-white">{level.questions[currentQuestionIndex].question}</p>
 
           {/* Render options for the current question */}
           <ul className="flex flex-col gap-5">
@@ -257,7 +284,11 @@ export default function QuizPage() {
                       onChange={() => setSelectedAnswer(index)}
                       className="hidden" // Hide the radio input
                     />
-                    <span className="flex-grow">{option}</span>
+                    <span className={`flex-grow text-lg transition-all duration-300  ${
+                      selectedAnswer === index
+                        ? " text-green-400"
+                        : "text-gray-500"
+                    }`}>{option}</span>
                   </label>
                 </li>
               )
