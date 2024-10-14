@@ -86,11 +86,9 @@ const Slider = () => {
           <button
             key={index}
             onClick={() => goToBanner(index)}
-            className={`mx-1 w-[6px] h-1 rounded-full transition-all ease-in-out duration-300 ${
-              index === currentIndex
-                ? " w-[60px] h-1 bg-gray-300"
-                : "bg-gray-300"
-            }`}
+            className={`mx-1 w-1.5 h-1 rounded-full transition-all ease-in-out duration-300 ${
+  index === currentIndex ? "min-w-[60px] h-1 bg-gray-500" : "w-1.5 bg-gray-300"
+}`}
           />
         ))}
       </div>
