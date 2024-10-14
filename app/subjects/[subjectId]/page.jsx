@@ -54,21 +54,23 @@ export default function ChapterList() {
     router.push('/subjects')
   }
   return (
-    <div className="max-w-sm mx-auto  mt-5 flex flex-col gap-5 px-5">
-      <MoveLeft color="white" onClick={backToHome} className="" />
+    <div className="max-w-sm mx-auto  mt-2 flex flex-col gap-5 px-5">
       <div className="flex items-center justify-between">
-        <h1 className="text-white">Select a sub topic</h1>
-        <Search color="white" />
-      </div>
-      <h1 className="text-white text-2xl font-bold text-center">
+      <MoveLeft color="white" onClick={backToHome} className="" />
+      <h1 className="text-white text-xl font-bold text-center">
         {subject.name}
       </h1>
+       
+        <Search color="white" />
+      </div>
+      <h1 className="text-white">Select a sub topic</h1>
       <ul className="max-w-sm flex flex-wrap gap-6">
         {subject.chapters.map((chapter) => (
           <li key={chapter.id}>
             <Link href={`/subjects/${subject.id}/${chapter.id}`}>
             <Image  src={chapter.img} width={100} height={100} className='w-40 h-40 rounded-lg object-cover'/>
               <h1 className='text-white font-semibold'>{chapter.name}</h1>
+              <p className='text-xs text-[#A9A9A9]'>Levels : {chapter.levels ? chapter.levels.length : 0}</p>
             </Link>
           </li>
         ))}

@@ -4,6 +4,10 @@ import { usePathname } from 'next/navigation';
 import quizData from '../../../../data/quizData'; // Adjust path if necessary
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { MoveLeft, Info } from 'lucide-react';
+import Image from 'next/image';
+
+
 
 export default function LevelList() {
   const pathname = usePathname(); // Use pathname to get the current path
@@ -54,12 +58,22 @@ export default function LevelList() {
   }
 
   return (
-    <div>
-      <h1>{subject.name} - {chapter.name} - Choose a Level</h1>
+    <div className='max-w-sm mx-auto flex flex-col mt-2 gap-5 px-5'>
+      <div className="w-full flex items-center justify-between gap-5">
+        <MoveLeft color="white" 
+        // onClick={backToHome} 
+        className="" />
+        <h1 className="text-white text-xl font-bold text-center">{subject.name} - {chapter.name}</h1>
+        <Info className=" text-white cursor-pointer"
+        // onClick={infoToOPen}
+        />
+      </div>
+        <Image src={chapter.img} width={100} height={100} className='w-44 h-56 rounded-lg object-cover'/>
       <ul>
         {chapter.levels.map((level) => (
           <li key={level.id}>
             <Link href={`/subjects/${subject.id}/${chapter.id}/${level.id}`}>
+
               {level.name}
             </Link>
           </li>

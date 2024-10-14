@@ -14,7 +14,7 @@ const page = () => {
     router.push('/')
   }
   return (
-    <motion.div className='max-w-sm mx-auto  mt-5 flex flex-col gap-5 px-5'>
+    <motion.div className='max-w-sm mx-auto mt-2 flex flex-col gap-5 px-5'>
       <MoveLeft color='white' onClick={backToHome} className=''/>
       <div className='flex items-center justify-between'>
         <h1 className='text-white'>Select a Topic</h1>
