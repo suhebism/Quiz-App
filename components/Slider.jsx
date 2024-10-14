@@ -55,7 +55,7 @@ const Slider = () => {
   });
 
   return (
-    <div className="relative w-full max-w-lg mx-auto" {...handlers}>
+    <div className="relative w-full max-w-lg mx-auto px-3" {...handlers}>
       <div className="overflow-hidden">
         <div
           className="flex transition-transform duration-500"
@@ -64,7 +64,7 @@ const Slider = () => {
           {banners.map((banner) => (
             <div
               key={banner.id}
-              className="min-w-full flex flex-col items-start justify-start text-white px-5 gap-3 cursor-pointer select-none"
+              className="min-w-full flex flex-col items-start justify-start text-white gap-3 cursor-pointer select-none"
             >
               <h2 className="text-sm font-bold">{banner.text}</h2>
               <div className="bg-[#BAD8F4] h-20 w-full p-4 rounded-lg flex items-center justify-between">
@@ -86,9 +86,9 @@ const Slider = () => {
           <button
             key={index}
             onClick={() => goToBanner(index)}
-            className={`mx-1 w-[6px] h-1 rounded-full ${
+            className={`mx-1 w-[6px] h-1 rounded-full transition-all ease-in-out duration-300 ${
               index === currentIndex
-                ? " w-[44px] h-1 bg-gray-300"
+                ? " w-[60px] h-1 bg-gray-300"
                 : "bg-gray-300"
             }`}
           />

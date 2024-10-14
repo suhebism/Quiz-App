@@ -29,7 +29,7 @@ const Nav = () => {
     }, [toggle]);
   return (
     <>
-    <div className="w-full flex justify-between items-center pt-5 px-5 ">
+    <div className="w-full flex justify-between items-center pt-5 px-3">
       <div className="flex items-center gap-3">
         <Avatar onClick={()=>(setToggle(true))} alt="Suheb Ahmed" src={avatar} />
         <h1 className="text-white font-base text-lg">Hello, <span className="font-extrabold">Suheb!</span></h1>
@@ -43,7 +43,7 @@ const Nav = () => {
         animate={{ x: 0 }}
         exit={{ x: -500 }}
         transition={{ ease: "easeInOut", duration: 0.5 }}
-        className="fixed w-screen h-screen bg-[#161515] bg-opacity-10 flex flex-col items-center backdrop-blur-lg z-10 top-0">
+        className="fixed w-full max-w-sm mx-auto px-5 h-screen bg-[#161515] bg-opacity-10 flex flex-col items-center backdrop-blur-lg z-10 top-0">
             <div className="text-white fixed top-2 right-2 cursor-pointer" onClick={()=>(setToggle(false))}>Close</div>
             <UserAvatar/>
             <div className="flex flex-col ga-10 w-full items-start px-5 gap-4">

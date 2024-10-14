@@ -212,7 +212,7 @@ export default function QuizPage() {
       <AnimatePresence>
         {prompt && (
           <div
-            className="fixed z-50 h-screen w-screen bg-opacity-50 backdrop-blur-md  text-white flex items-center justify-center transition ease-in-out delay-500 duration-500"
+            className="fixed z-50 h-screen w-screen bg-opacity-50 backdrop-blur-lg  text-white flex items-center justify-center transition ease-in-out delay-500 duration-500"
             onClick={() => setPrompt(false)} // Close modal when clicking outside
           >
             <motion.div
@@ -271,7 +271,7 @@ export default function QuizPage() {
                   <label
                     className={`flex items-center justify-between py-3 px-5 w-full h-14 border-[1px] rounded-full text-white focus:outline-none transition-all duration-300 cursor-pointer ${
                       selectedAnswer === index
-                        ? "border-green-400 text-green-400"
+                        ? "border-green-400 text-green-400 border-2 transition-all duration-300"
                         : "border-gray-500 text-gray-500"
                     }`}
                     onClick={() => setSelectedAnswer(index)} // Handle selection on click
@@ -284,9 +284,9 @@ export default function QuizPage() {
                       onChange={() => setSelectedAnswer(index)}
                       className="hidden" // Hide the radio input
                     />
-                    <span className={`flex-grow text-lg transition-all duration-300  ${
+                    <span className={`flex-grow text-lg  transition-all duration-300  ${
                       selectedAnswer === index
-                        ? " text-green-400"
+                        ? " text-green-400 font-bold"
                         : "text-gray-500"
                     }`}>{option}</span>
                   </label>

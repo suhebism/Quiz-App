@@ -20,17 +20,17 @@ export default function Home() {
     levelUrl: level.id,
   }
   return (
-    <div>
+    <div className="relative w-full max-w-sm mx-auto">
       <Nav />
       <Badges />
-      <div className="px-5 flex justify-between items-end my-3">
+      <div className="flex justify-between items-end my-3 relative w-full max-w-lg mx-auto px-3">
         <h1 className="text-white text-lg font-black">Active course</h1>
         <Link href="/all-quiz">
           <h1 className="text-white text-sm font-normal underline">View all</h1>
         </Link>
       </div>
       <QuizCard quizLevelData={quizLevelData} />
-      <div className="px-5 flex justify-between items-end mt-4">
+      <div className=" flex justify-between items-end mt-4 px-3">
         <h1 className="text-white text-lg font-black">Featured</h1>
         <h1 className="text-white text-sm font-normal underline">View all</h1>
       </div>

@@ -5,7 +5,7 @@ import calendar from "../public/icons/calendar.png";
 import partners from "../public/icons/partners.png";
 const Badges = () => {
   return (
-    <div className="flex flex-row gap-2 px-5">
+    <div className="flex flex-row gap-2 px-3 my-3">
       <Badge
           name="Certified"
           primary="bg-blue-400"

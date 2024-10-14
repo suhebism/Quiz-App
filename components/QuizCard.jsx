@@ -9,7 +9,7 @@ const QuizCard = ({ quizLevelData }) => {
   return (
     <Link 
       href={`/subjects/${subjectUrl}/${chapterUrl}/${levelUrl}`}
-      className="mx-5 p-5 w-[350px] h-[300px] bg-[#75BC7B] rounded-3xl flex flex-col justify-between"
+      className="p-5 max-w-sm h-[300px] bg-[#75BC7B] rounded-3xl flex flex-col justify-between mx-3"
     >
       <div className="flex flex-col justify-between gap-3">
         <div className="flex items-center justify-between w-full">
@@ -36,7 +36,7 @@ const QuizCard = ({ quizLevelData }) => {
             <p className="font-bold text-xs text-[#741E2D]">1 week left</p>
           </div>
           <div className="flex items-center ">
-            <p className="font-semibold text-black text-sm mr-4">+25</p>
+            {/* <p className="font-semibold text-black text-sm mr-4">+25</p> */}
             <Participants />
           </div>
         </div>
