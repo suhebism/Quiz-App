@@ -12,8 +12,8 @@ const geistMono = localFont({
   weight: "100 900",
 });
 export const metadata = {
-  title: "PWA NextJS",
-  description: "It's a simple progressive web application made with NextJS",
+  title: "Quiz",
+  description: "UPSC Quiz App",
   generator: "Next.js",
   manifest: "/manifest.json",
   keywords: ["nextjs", "next14", "pwa", "next-pwa"],
