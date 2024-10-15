@@ -203,7 +203,7 @@ export default function QuizPage() {
           exit={{ y: 600 }} // Exit animation
           transition={{ duration: 0.2, ease: "easeInOut" }} 
           className="fixed px-5 pt-5 bottom-0 h-screen w-screen bg-[#161515] z-50">
-            <MoveLeft onClick={infoToClose} color="white" className="cursor-pointer"/>
+            <MoveLeft onClick={infoToClose} color="white" size={28} className="cursor-pointer"/>
             <div className="flex items-center justify-between">
               <h1 className="text-white">
                 {subject.name} - {chapter.name} 
@@ -259,7 +259,11 @@ export default function QuizPage() {
               Your score is: {score} / {level.questions.length}
             </p>
           </div>
-          <LottieAnimations animationData={congratulations} />
+          <div className="flex flex-col items-center -mt-10">
+            <LottieAnimations animationData={congratulations} />
+            <h1 className="text-white font-bold text-lg -mt-20">Congatulations</h1>
+          </div>
+
           <button onClick={handleNextLevel} className="bottom-5 w-[350px] h-14 font-bold rounded-full bg-green-500 text-white" >Next Level</button>{" "}
           {/* Call handleNextLevel on click */}
         </>
