@@ -101,8 +101,8 @@ export default function LevelList() {
       </div>
       <Image src={chapter.img} width={100} height={100} className='w-44 h-56 rounded-lg object-cover'/>
       <div className='w-full flex items-center justify-between'>
-        <div className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><Layers3 color='#75BC7B' className='mr-2'/> : 23 topics</div>
-        <div className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><CalendarDays color='#75BC7B' className='mr-2'/> : 3 Weeks</div>
+        <div onClick={infoToOPen} className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><Layers3 color='#75BC7B' className='mr-2'/> : 23 topics</div>
+        <div onClick={infoToOPen} className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><CalendarDays color='#75BC7B' className='mr-2'/> : 3 Weeks</div>
       </div>
       <div className='w-full flex items-center justify-between'>
         <h1 className='text-white font-semibold text-lg'>Sub Topics</h1>
@@ -110,7 +110,7 @@ export default function LevelList() {
       </div>
       <ul className='w-full flex flex-col gap-3'>
         {chapter.levels.map((level) => (
-          <Link href={`/subjects/${subject.id}/${chapter.id}/${level.id}`} key={level.id} className='h-20 bg-[#242424] rounded-2xl px-5 py-3'>
+          <Link href={`/subjects/${subject.id}/${chapter.id}/${level.id}`} key={level.id} className=' bg-[#242424] rounded-2xl px-5 py-3 border-[1px] border-[#4e4d4d]'>
             <h1 className='text-white font-semibold'>{level.name}</h1>
             <h1 className='text-xs text-[#A9A9A9]'>Questions : {}</h1>
             <div className='w-full flex items-center justify-between'>

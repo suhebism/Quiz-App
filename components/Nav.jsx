@@ -46,11 +46,11 @@ const Nav = () => {
             <X className="text-white fixed top-3 right-5 cursor-pointer" size={28} onClick={()=>(setToggle(false))}/>
             <UserAvatar/>
             <div className="flex flex-col ga-10 w-full items-start px-3  gap-4">
-              <Link href='/subjects' className="text-white font-semibold text-lg flex gap-2">
+              <Link href='/subjects' onClick={()=>(setToggle(false))} className="text-white font-semibold text-lg flex gap-2">
               <BookMarked />
               <h1>Subjects</h1>
               </Link>
-              <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
+              <Link href='/topics' onClick={()=>(setToggle(false))} className="text-white font-semibold text-lg flex gap-2">
               <Medal />
               <h1>Player VS Player</h1>
               </Link>
@@ -58,19 +58,19 @@ const Nav = () => {
               <LibraryBig />
               <h1>Chapters</h1>
               </Link> */}
-              <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
+              <Link href='/topics' onClick={()=>(setToggle(false))} className="text-white font-semibold text-lg flex gap-2">
               <HandHelping />
               <h1>Help</h1>
               </Link>
-              <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
+              <Link href='/topics' onClick={()=>(setToggle(false))} className="text-white font-semibold text-lg flex gap-2">
               <Share />
               <h1>Share</h1>
               </Link>
-              <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
+              <Link href='/topics' onClick={()=>(setToggle(false))} className="text-white font-semibold text-lg flex gap-2">
               <Blocks />
               <h1>Package</h1>
               </Link>
-              <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
+              <Link href='/topics' onClick={()=>(setToggle(false))} className="text-white font-semibold text-lg flex gap-2">
               <LogOut />
               <h1>Logout</h1>
               </Link>
