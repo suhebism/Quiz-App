@@ -4,12 +4,12 @@ const quizData = {
       {
         id: 'math',
         name: 'Mathematics',
-        img:'https://images.unsplash.com/photo-1601397922721-4326ae07bbc5?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        img:'https://images.unsplash.com/photo-1726503031918-9943eebf40da?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         chapters: [
           {
             id: 'algebra',
             name: 'Algebra',
-            img:'https://images.unsplash.com/photo-1482555670981-4de159d8553b?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            img:'https://images.unsplash.com/photo-1726503015737-43b3d1009351?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             levels: [
               {
                 id: 'level1',
@@ -110,7 +110,7 @@ const quizData = {
           {
             id: 'geometry',
             name: 'Geometry',
-            img:'https://images.unsplash.com/photo-1512310604669-443f26c35f52?q=80&w=1034&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            img:'https://images.unsplash.com/photo-1582258514015-1be36bef6e19?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             levels: [
               {
                 id: 'level1',
@@ -151,7 +151,7 @@ const quizData = {
       {
         id: 'science',
         name: 'Science',
-        img:'https://images.unsplash.com/photo-1535127022272-dbe7ee35cf33?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        img:'https://images.unsplash.com/photo-1513379733131-47fc74b45fc7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         chapters: [
           {
             id: 'physics',

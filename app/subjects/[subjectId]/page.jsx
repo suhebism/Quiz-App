@@ -56,7 +56,7 @@ export default function ChapterList() {
   return (
     <div className="max-w-sm mx-auto  mt-2 flex flex-col gap-5 px-5">
       <div className="flex items-center justify-between">
-      <MoveLeft color="white" onClick={backToHome} className="" />
+      <MoveLeft color="white" size={28} onClick={backToHome} className="" />
       <h1 className="text-white text-xl font-bold text-center">
         {subject.name}
       </h1>
