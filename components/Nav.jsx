@@ -43,7 +43,7 @@ const Nav = () => {
         exit={{ x: -500 }}
         transition={{ ease: "easeInOut", duration: 0.5 }}
         className="fixed w-full max-w-sm mx-auto px-5 h-screen bg-[#161515] bg-opacity-10 flex flex-col items-center backdrop-blur-lg z-10 top-0">
-            <X className="text-white fixed top-2 right-5 cursor-pointer" onClick={()=>(setToggle(false))}/>
+            <X className="text-white fixed top-3 right-5 cursor-pointer" size={28} onClick={()=>(setToggle(false))}/>
             <UserAvatar/>
             <div className="flex flex-col ga-10 w-full items-start px-3  gap-4">
               <Link href='/subjects' className="text-white font-semibold text-lg flex gap-2">
@@ -54,10 +54,10 @@ const Nav = () => {
               <Medal />
               <h1>Player VS Player</h1>
               </Link>
-              <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
+              {/* <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
               <LibraryBig />
               <h1>Chapters</h1>
-              </Link>
+              </Link> */}
               <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">
               <HandHelping />
               <h1>Help</h1>

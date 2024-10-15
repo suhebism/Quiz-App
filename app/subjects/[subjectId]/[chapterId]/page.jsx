@@ -67,11 +67,16 @@ export default function LevelList() {
     setInfo(false)
   }
   return (
-    <div className='max-w-sm mx-auto flex flex-col items-center mt-2 gap-5 px-5'>
+    <motion.div
+    initial= { {opacity: 0} }
+        animate={{ opacity: 1 }}
+        exit= { {opacity: 0} }
+        transition= { {ease: "easeInOut", duration: 0.5} }
+    className='max-w-sm mx-auto flex flex-col items-center mt-2 gap-5 px-5'>
       <div className="w-full flex items-center justify-between gap-5">
-        <MoveLeft color="white" size={28} onClick={backToHome} className='cursor-pointer'/>
+        <MoveLeft color="white" size={32} onClick={backToHome} className='cursor-pointer'/>
         <h1 className="text-white text-xl font-bold text-center">{subject.name} - {chapter.name}</h1>
-        <Info className=" text-white cursor-pointer" onClick={infoToOPen}/>
+        <Info className=" text-white cursor-pointer" style={{visibility:'hidden'}} onClick={infoToOPen}/>
         <AnimatePresence>
         {info && (
           <motion.div 
@@ -96,8 +101,8 @@ export default function LevelList() {
       </div>
       <Image src={chapter.img} width={100} height={100} className='w-44 h-56 rounded-lg object-cover'/>
       <div className='w-full flex items-center justify-between'>
-        <div className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><Layers3 color='#75BC7B'/> : 23 topics</div>
-        <div className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><CalendarDays color='#75BC7B'/> : 3 Weeks</div>
+        <div className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><Layers3 color='#75BC7B' className='mr-2'/> : 23 topics</div>
+        <div className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><CalendarDays color='#75BC7B' className='mr-2'/> : 3 Weeks</div>
       </div>
       <div className='w-full flex items-center justify-between'>
         <h1 className='text-white font-semibold text-lg'>Sub Topics</h1>
@@ -116,6 +121,6 @@ export default function LevelList() {
         ))}
       </ul>
       
-    </div>
+    </motion.div>
   );
 }

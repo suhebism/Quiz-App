@@ -184,9 +184,11 @@ export default function QuizPage() {
   }
   return (
     <motion.div
-      initial={{ opacity: 0 }} // Initial state (hidden)
-      animate={{ opacity: 1 }} // End state (visible)
-      transition={{ duration: 0.5 }} // Transition duration
+    initial= { {opacity: 0} }
+    animate={{ opacity: 1 }}
+    exit= { {opacity: 0} }
+    transition= { {ease: "easeInOut", duration: 0.5} }
+      
       className="flex flex-col items-center h-screen pt-5 pb-10 justify-between"
     >
       <X
