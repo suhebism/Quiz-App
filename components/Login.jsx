@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 import loader from '../public/animation/loader.json'
 import LottieAnimations from "@/components/LottieAnimations";
 import Lottie from 'lottie-react';
+import Loading from './Loading';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -40,9 +41,7 @@ export default function Login() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        {/* <LottieAnimations animationData={loader} /> */}
-        {/* <Lottie animationData={loader} ></Lottie> */}
-        <p className='text-white'>Loading...</p>
+        <Loading/>
       </div>
     );
   }
@@ -52,8 +51,8 @@ export default function Login() {
   };
 
   return (
-    <div className='relative w-full max-w-sm mx-auto mt-20 px-5 flex flex-col gap-5'>
-      <MoveLeft color="white" size={32} className='cursor-pointer' onClick={handleClick}/>
+    <div className='relative w-full max-w-sm mx-auto mt-20 px-5 flex flex-col gap-10'>
+      <MoveLeft color="white" size={32} className='cursor-pointer absolute -top-16' onClick={handleClick}/>
       <h2 className='text-white text-center text-2xl font-medium'>Login to Quiz App</h2>
       <div className='flex flex-col gap-5'>
         <div className='flex flex-col gap-4'>

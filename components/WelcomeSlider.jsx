@@ -46,7 +46,7 @@ const Slider = () => {
   });
 
   return (
-    <div className="relative w-full max-w-lg mx-auto px-3 flex flex-col gap-36" {...handlers}>
+    <div className="relative w-full max-w-lg mx-auto px-3 flex flex-col gap-36 overflow-hidden" {...handlers}>
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
