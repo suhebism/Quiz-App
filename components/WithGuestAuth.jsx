@@ -2,7 +2,7 @@
 import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import LottieAnimations from './LottieAnimations';
+import Loading from './Loading';
 
 const WithGuestAuth = (Component) => {
   return function GuestAuthenticatedComponent(props) {
@@ -17,7 +17,7 @@ const WithGuestAuth = (Component) => {
     }, [loading, user, router]);
 
     // Render the component or a loading indicator
-    return loading ? <LottieAnimations animationData={loader} /> : <Component {...props} />;
+    return loading ? <Loading/> : <Component {...props} />;
   };
 };
 

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { MoveLeft, Info,Zap,AlarmClock,Layers3, CalendarDays } from 'lucide-react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import Loading from '@/components/Loading';
 
 export default function LevelList() {
   const pathname = usePathname(); // Use pathname to get the current path
@@ -47,7 +47,9 @@ export default function LevelList() {
   }, [pathname, subject]); // Depend on pathname and subject
 
   if (loading) {
-    return <div className='text-white text-center'>Loading...</div>;
+    return <div className="flex items-center justify-center h-screen">
+    <Loading/>
+  </div>;
   }
 
   if (!subject) {

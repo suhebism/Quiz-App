@@ -9,7 +9,7 @@ import loader from '@/public/animation/loader.json'
 import LottieAnimations from "@/components/LottieAnimations";
 import Image from "next/image";
 import bird from '@/public/img/bird.png'
-
+import Loading from "@/components/Loading";
 
 export default function QuizPage() {
   const pathname = usePathname(); // Get the current pathname
@@ -151,7 +151,9 @@ export default function QuizPage() {
   };
 
   if (loadingSubject || loadingChapter || loadingLevel) {
-    return <div className="text-white flex items-center justify-center"><LottieAnimations animationData={loader} /></div>;
+    return <div className="flex items-center justify-center h-screen">
+    <Loading/>
+  </div>;
   }
 
   if (!subject) {

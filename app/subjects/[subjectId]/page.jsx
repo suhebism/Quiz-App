@@ -9,7 +9,7 @@ import loader from '@/public/animation/loader.json'
 import LottieAnimations from "@/components/LottieAnimations";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-
+import Loading from "@/components/Loading";
 
 export default function ChapterList() {
   const pathname = usePathname(); // Use pathname from next/navigation
@@ -42,8 +42,8 @@ export default function ChapterList() {
 
   if (loading) {
     return (
-      <div className="text-white flex items-center justify-center">
-        <LottieAnimations animationData={loader} />
+      <div className="flex items-center justify-center h-screen">
+        <Loading/>
       </div>
     );
   }
