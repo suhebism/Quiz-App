@@ -67,7 +67,6 @@ export default function ChapterList() {
         <h1 className="text-white text-xl font-bold text-center">
           {subject.name}
         </h1>
-        
           <Search color="white" />
         </div>
         <h1 className="text-white">Select a sub topic</h1>

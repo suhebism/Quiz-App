@@ -1,3 +1,5 @@
+'use client'; // Add this line at the top of page.js
+import WithAuth from "@/components/WithAuth";
 import Link from "next/link";
 import quizData from "../data/quizData";
 import Nav from "@/components/Nav";
@@ -5,7 +7,8 @@ import Badges from "@/components/Badges";
 import QuizCard from '@/components/QuizCard';
 import Slider from "@/components/Slider";
 import PageTransition from "@/components/PageTransitions";
-export default function Home() {
+
+function Home() {
   const subject = quizData.subjects[0];
   const chapter = subject.chapters[0];
   const level = chapter.levels[0];
@@ -41,3 +44,6 @@ export default function Home() {
     </PageTransition>
   );
 }
+
+const ProtectedHome = WithAuth(Home);
+export default ProtectedHome;

@@ -47,7 +47,7 @@ export default function LevelList() {
   }, [pathname, subject]); // Depend on pathname and subject
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='text-white text-center'>Loading...</div>;
   }
 
   if (!subject) {
@@ -101,8 +101,12 @@ export default function LevelList() {
       </div>
       <Image src={chapter.img} width={100} height={100} className='w-44 h-56 rounded-lg object-cover'/>
       <div className='w-full flex items-center justify-between'>
-        <div onClick={infoToOPen} className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><Layers3 color='#75BC7B' className='mr-2'/> : 23 topics</div>
-        <div onClick={infoToOPen} className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><CalendarDays color='#75BC7B' className='mr-2'/> : 3 Weeks</div>
+        <div 
+        // onClick={infoToOPen} 
+        className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><Layers3 color='#75BC7B' className='mr-2'/> : 23 topics</div>
+        <div 
+        // onClick={infoToOPen}
+        className='bg-[#242424] rounded-3xl py-3 px-8 text-white flex items-center'><CalendarDays color='#75BC7B' className='mr-2'/> : 3 Weeks</div>
       </div>
       <div className='w-full flex items-center justify-between'>
         <h1 className='text-white font-semibold text-lg'>Sub Topics</h1>
