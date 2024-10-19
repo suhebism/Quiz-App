@@ -4,46 +4,56 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../lib/firebase';
 import { useRouter } from 'next/navigation';
 import { MoveLeft } from 'lucide-react';
-import { useAuth } from '../context/AuthContext'; // Adjust the path as needed
-
+import { useAuth } from '../context/AuthContext';
+import loader from '../public/animation/loader.json'
+import LottieAnimations from "@/components/LottieAnimations";
+import Lottie from 'lottie-react';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(true); // Initialize loading as true
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const { user } = useAuth(); // Access user from context
+  const { user } = useAuth();
 
   useEffect(() => {
     if (user) {
-      console.log('User is already logged in, redirecting to home.');
-      router.push('/'); // Redirect to home if logged in
+      router.push('/');
     } else {
-      setLoading(false); // Set loading to false only if no user
+      setLoading(false);
     }
   }, [user, router]);
 
   const handleLogin = async () => {
-    setLoading(true); // Set loading to true when login begins
+    setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert('Logged in successfully!');
-      router.push('/'); // Redirect to the homepage after login
+      router.push('/');
     } catch (error) {
       console.error('Error logging in:', error);
       alert('Error logging in: ' + error.message);
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false);
     }
   };
 
-  // Conditional rendering based on loading state
   if (loading) {
-    return <div>Loading...</div>; // Show loading state until user authentication is checked
+    return (
+      <div className="flex items-center justify-center h-screen">
+        {/* <LottieAnimations animationData={loader} /> */}
+        {/* <Lottie animationData={loader} ></Lottie> */}
+        <p className='text-white'>Loading...</p>
+      </div>
+    );
   }
+
+  const handleClick =()=>{
+    router.push('/welcome');
+  };
 
   return (
     <div className='relative w-full max-w-sm mx-auto mt-20 px-5 flex flex-col gap-5'>
-      <MoveLeft color="white" size={32} className='cursor-pointer' />
+      <MoveLeft color="white" size={32} className='cursor-pointer' onClick={handleClick}/>
       <h2 className='text-white text-center text-2xl font-medium'>Login to Quiz App</h2>
       <div className='flex flex-col gap-5'>
         <div className='flex flex-col gap-4'>
@@ -73,7 +83,7 @@ export default function Login() {
       <button 
         className='px-8 h-14 bg-[#75BC7B] rounded-full text-white text-center flex items-center justify-center'
         onClick={handleLogin}
-        disabled={loading} // Disable button while loading
+        disabled={loading}
       >
         {loading ? 'Logging in...' : <h1 className='text-xl font-semibold text-center text-black'>Log in</h1>}
       </button>
