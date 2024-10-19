@@ -34,7 +34,7 @@ const Nav = () => {
     const handleLogout = async () => {
         try {
             await signOut(auth); // Sign out the user
-            router.push('/login'); // Redirect to the login page
+            router.push('/welcome'); // Redirect to the login page
         } catch (error) {
             console.error("Error signing out:", error);
             alert('Error logging out: ' + error.message);

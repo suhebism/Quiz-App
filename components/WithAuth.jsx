@@ -10,7 +10,7 @@ const withAuth = (Component) => {
 
     useEffect(() => {
       if (!user) {
-        router.push('/login');
+        router.push('/welcome');
       }
     }, [user, router]);
 
