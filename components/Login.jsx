@@ -90,9 +90,11 @@ export default function Login() {
         <div className='bg-[#292828] w-[45%] h-[1px]'></div>
       </div>
       <button className='px-8 h-14 bg-transparent border-[#292828] border-[1px] rounded-full text-center flex items-center justify-center'>
+        <img src="/icons/google.svg" className='w-6 left-10 absolute' alt="" />
         <h1 className='text-sm font-semibold text-center text-[#EDEDED]'>Continue with Google</h1>
       </button>
       <button className='px-8 h-14 bg-transparent border-[#292828] border-[1px] rounded-full text-[#EDEDED] text-center flex items-center justify-center'>
+        <img src="/icons/whatsapp.svg" className='w-6 left-10 absolute' alt="" />
         <h1 className='text-sm font-semibold text-center text-[#EDEDED]'>Continue with WhatsApp</h1>
       </button>
     </div>

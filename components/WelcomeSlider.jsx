@@ -70,8 +70,8 @@ const Slider = () => {
             onClick={() => goToBanner(index)}
             className={`mx-1 w-1 h-1 rounded-full transition-all ease-in-out duration-300 ${
               index === currentIndex
-                ? "min-w-[60px] h-1 bg-gray-300 transition-all ease-in-out duration-300"
-                : "w-1 bg-gray-300 transition-all ease-in-out duration-300"
+                ? "min-w-[60px] h-1 bg-gray-100 transition-all ease-in-out duration-300"
+                : "w-1 bg-gray-100 transition-all ease-in-out duration-300"
             }`}
           />
         ))}

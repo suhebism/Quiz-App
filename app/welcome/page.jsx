@@ -16,6 +16,20 @@ const page = () => {
           <Link href='/login' className='h-12 w-32 flex items-center justify-center rounded-full font-medium bg-[#75BC7B]'>Login</Link>
           <Link href='/signup' className='h-12 w-32 flex items-center justify-center rounded-full font-medium bg-white'>Signup</Link>
         </div>
+        <div className='flex flex-col items-center gap-5'>
+          <p className='text-white'>or via social media</p>
+          <div className='flex items-center gap-8'>
+          <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+        <img src="/icons/facebook.svg" alt="Facebook" />
+      </Link>
+          <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+        <img src="/icons/google.svg" alt="Facebook" />
+      </Link>
+          <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+        <img src="/icons/whatsapp.svg" alt="Facebook" />
+      </Link>
+          </div>
+        </div>
         </div>
     </div>
   )
