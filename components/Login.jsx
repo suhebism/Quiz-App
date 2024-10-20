@@ -5,9 +5,6 @@ import { auth } from '../lib/firebase';
 import { useRouter } from 'next/navigation';
 import { MoveLeft } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import loader from '../public/animation/loader.json'
-import LottieAnimations from "@/components/LottieAnimations";
-import Lottie from 'lottie-react';
 import Loading from './Loading';
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -31,8 +28,9 @@ export default function Login() {
       alert('Logged in successfully!');
       router.push('/');
     } catch (error) {
-      console.error('Error logging in:', error);
-      alert('Error logging in: ' + error.message);
+      // console.error('Error logging in:', error);
+      // alert('Error logging in: ' + error.message);
+      alert('enter valid email and password');
     } finally {
       setLoading(false);
     }

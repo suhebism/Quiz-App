@@ -1,5 +1,4 @@
 import React from 'react'
-import LottieAnimations from './LottieAnimations'
 import Lottie from 'lottie-react'
 import loader from '@/public/animation/loader.json'
 const Loading = () => {
