@@ -1,26 +1,54 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { auth } from '@/lib/firebase';
+import { auth, db } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser); // Set user to current user or null
-      setLoading(false); // Set loading to false when auth state is determined
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        // Fetch user details from Firestore
+        try {
+          const userDocRef = doc(db, 'users', currentUser.uid);
+          const userDoc = await getDoc(userDocRef);
+
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            setUser({
+              uid: currentUser.uid,
+              email: currentUser.email,
+              displayName: userData.name || currentUser.displayName,
+              phoneNumber: userData.phoneNumber || '',
+            });
+          } else {
+            setUser({
+              uid: currentUser.uid,
+              email: currentUser.email,
+              displayName: currentUser.displayName || 'Guest',
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching user data from Firestore:", error);
+        }
+      } else {
+        setUser(null);
+      }
+
+      setLoading(false);
     });
 
-    return () => unsubscribe(); // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
-      {children}
+      {loading ? <p className='text-red-950'>Loading...</p> : children}
     </AuthContext.Provider>
   );
 };

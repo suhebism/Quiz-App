@@ -5,7 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import dynamic from 'next/dynamic'; // For dynamic import
-
+import { useAuth } from "@/context/AuthContext";
 // Dynamically import AvatarEditor with SSR disabled
 const AvatarEditor = dynamic(() => import("react-avatar-edit"), { ssr: false });
 
@@ -14,7 +14,7 @@ const ProfilePictureEditor = () => {
   const [src, setSrc] = useState(null); // Source for AvatarEditor
   const [open, setOpen] = useState(false); // Dialog open/close
   const [isClient, setIsClient] = useState(false);
-
+  const { user } = useAuth(); // Get user from auth context
   useEffect(() => {
     // This code will only run on the client side
     setIsClient(true);
@@ -50,7 +50,7 @@ const ProfilePictureEditor = () => {
       />
 
       {/* Edit Button to open Avatar Editor */}
-      <h1 className="font-bold text-2xl text-white">Suheb Ahmed</h1>
+      <h1 className="font-bold text-2xl text-white">{user?.displayName || "Guest"}</h1>
       <div
         className="font-light text-xs text-white underline"
         variant="contained"

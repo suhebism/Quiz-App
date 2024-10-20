@@ -46,7 +46,7 @@ const Nav = () => {
             <div className="w-full flex justify-between items-center pt-5 px-3">
                 <div className="flex items-center gap-3">
                     <Avatar onClick={() => setToggle(true)} alt="Suheb Ahmed" src={avatar} />
-                    <h1 className="text-white font-base text-lg">Hello, <span className="font-extrabold">Suheb!</span></h1>
+                    <h1 className="text-white font-base text-lg">Hello, <span className="font-extrabold">{user?.displayName || "Guest"}!</span></h1>
                 </div>
                 <BellDot color="white" size="24px" />
             </div>

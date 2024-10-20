@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../lib/firebase';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth,googleProvider  } from '../lib/firebase';
 import { useRouter } from 'next/navigation';
 import { MoveLeft } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -47,7 +47,20 @@ export default function Login() {
   const handleClick =()=>{
     router.push('/welcome');
   };
-
+  
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, googleProvider);
+      alert('Logged in with Google successfully!');
+      router.push('/');
+    } catch (error) {
+      console.error('Error with Google sign-in:', error);
+      alert('Error with Google sign-in: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className='relative w-full max-w-sm mx-auto mt-20 px-5 flex flex-col gap-10'>
       <MoveLeft color="white" size={32} className='cursor-pointer absolute -top-16' onClick={handleClick}/>
@@ -89,7 +102,8 @@ export default function Login() {
         <div className='text-[#292828]'>OR</div>
         <div className='bg-[#292828] w-[45%] h-[1px]'></div>
       </div>
-      <button className='px-8 h-14 bg-transparent border-[#292828] border-[1px] rounded-full text-center flex items-center justify-center'>
+      <button className='px-8 h-14 bg-transparent border-[#292828] border-[1px] rounded-full text-center flex items-center justify-center' onClick={handleGoogleSignIn}
+        disabled={loading}>
         <img src="/icons/google.svg" className='w-6 left-10 absolute' alt="" />
         <h1 className='text-sm font-semibold text-center text-[#EDEDED]'>Continue with Google</h1>
       </button>
