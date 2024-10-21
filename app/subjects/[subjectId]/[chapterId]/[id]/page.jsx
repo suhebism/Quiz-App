@@ -10,6 +10,8 @@ import LottieAnimations from "@/components/LottieAnimations";
 import Image from "next/image";
 import bird from '@/public/img/bird.png'
 import Loading from "@/components/Loading";
+import ProgressBar from "@/components/ProgressBar";
+
 
 export default function QuizPage() {
   const pathname = usePathname(); // Get the current pathname
@@ -272,7 +274,12 @@ export default function QuizPage() {
           {/* Call handleNextLevel on click */}
         </>
       ) : (
-        <div className="flex flex-col items-center justify-between h-full text-center">
+        <>
+        <div className="flex flex-col items-center justify-center gap-8 h-full text-center">
+           <ProgressBar
+      currentQuestionIndex={currentQuestionIndex}
+      totalQuestions={level.questions.length}
+    />
           {/* Show current question */}
           <h2 className="text-white text-xl text-center font-semibold h-10">
             Question {currentQuestionIndex + 1} of {level.questions.length}
@@ -324,6 +331,7 @@ export default function QuizPage() {
             Submit Answer
           </button>
         </div>
+        </>
       )}
     </motion.div>
   );
