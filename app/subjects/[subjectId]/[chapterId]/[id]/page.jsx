@@ -720,7 +720,7 @@ export default function QuizPage() {
             >
               <span
                 className={`text-lg font-bold ${
-                  isCorrect ? "text-green-500" : "text-red-500"
+                  isCorrect ? "text-white" : "text-red-500"
                 }`}
               >
                 {isCorrect ? "Correct Answer!" : "Wrong Answer"}
