@@ -12,7 +12,6 @@
 // import Loading from "@/components/Loading";
 // import ProgressBar from "@/components/ProgressBar";
 
-
 // export default function QuizPage() {
 //   const pathname = usePathname(); // Get the current pathname
 //   const router = useRouter(); // Initialize the router
@@ -192,7 +191,7 @@
 //     animate={{ opacity: 1 }}
 //     exit= { {opacity: 0} }
 //     transition= { {ease: "easeInOut", duration: 0.5} }
-      
+
 //       className="flex flex-col items-center h-screen pt-5 pb-10 justify-between"
 //     >
 //       <X
@@ -203,16 +202,16 @@
 //         onClick={infoToOPen}/>
 //         <AnimatePresence>
 //         {info && (
-//           <motion.div 
+//           <motion.div
 //           initial={{ y: 600 }}
 //           animate={{ y: 0 }}
 //           exit={{ y: 600 }} // Exit animation
-//           transition={{ duration: 0.2, ease: "easeInOut" }} 
+//           transition={{ duration: 0.2, ease: "easeInOut" }}
 //           className="fixed px-5 pt-5 bottom-0 h-screen w-screen bg-[#161515] z-50">
 //             <MoveLeft onClick={infoToClose} color="white" size={28} className="cursor-pointer"/>
 //             <div className="flex items-center justify-between">
 //               <h1 className="text-white">
-//                 {subject.name} - {chapter.name} 
+//                 {subject.name} - {chapter.name}
 //               </h1>
 //               <h1 className="text-white text-xs font-light">
 //                 {level.name}
@@ -337,44 +336,16 @@
 //   );
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import quizData from "../../../../../data/quizData";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Info, MoveLeft } from "lucide-react";
-import congratulations from '@/public/animation/congratulations.json';
+import congratulations from "@/public/animation/congratulations.json";
 import LottieAnimations from "@/components/LottieAnimations";
 import Image from "next/image";
-import bird from '@/public/img/bird.png';
+import bird from "@/public/img/bird.png";
 import Loading from "@/components/Loading";
 import ProgressBar from "@/components/ProgressBar";
 
@@ -394,7 +365,8 @@ export default function QuizPage() {
   const [showResultCard, setShowResultCard] = useState(false);
   const [info, setInfo] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-
+  const [showCompletionMessage, setShowCompletionMessage] = useState(false);
+  const [finalMessage, setFinalMessage] = useState(false);
   useEffect(() => {
     const segments = pathname.split("/").filter(Boolean);
     const subjectId = segments[1];
@@ -469,22 +441,133 @@ export default function QuizPage() {
 
     // Reset selected answer for the next question
     setSelectedAnswer(null);
-    
+
     // Update score only for correct answers
     if (correct) {
       setScore(score + 1);
     }
   };
 
+  // const handleNextQuestion = () => {
+  //   if (currentQuestionIndex < level.questions.length - 1) {
+  //     setCurrentQuestionIndex(currentQuestionIndex + 1);
+  //   } else {
+  //     setShowResult(true);
+  //   }
+  //   setShowResultCard(false); // Hide the result card after moving to the next question
+  // };
+
+  // const handleNextQuestion = () => {
+  //   if (currentQuestionIndex < level.questions.length - 1) {
+  //     setCurrentQuestionIndex(currentQuestionIndex + 1);
+  //   } else {
+  //     // All questions answered, proceed to the next level
+  //     const segments = pathname.split("/").filter(Boolean);
+  //     const subjectId = segments[1];
+  //     const chapterId = segments[2];
+  //     const nextLevelIndex = chapter.levels.findIndex(lvl => lvl.id === level.id) + 1;
+  //     setShowCompletionMessage(true);
+
+  //     if (nextLevelIndex < chapter.levels.length) {
+  //       const nextLevelId = chapter.levels[nextLevelIndex].id;
+  //       router.push(`/subjects/${subjectId}/${chapterId}/${nextLevelId}`);
+
+  //     } else {
+  //       alert("Congratulations! You have completed all levels in this chapter.");
+  //       // Optionally, navigate to a chapter summary or back to the chapter list
+  //     }
+  //   }
+  //   setShowResultCard(false); // Hide the result card after moving to the next question or level
+  // };
+
+  // const handleNextQuestion = () => {
+  //   if (currentQuestionIndex < level.questions.length - 1) {
+  //     // Move to the next question if there are more questions.
+  //     setCurrentQuestionIndex(currentQuestionIndex + 1);
+  //   } else {
+  //     // All questions answered, show the congratulatory message.
+  //     setShowCompletionMessage(true);
+  //   }
+  //   setShowResultCard(false); // Hide the result card after each question.
+  // };
+
+  // const handleNextLevel = () => {
+  //   const segments = pathname.split("/").filter(Boolean);
+  //   const subjectId = segments[1];
+  //   const chapterId = segments[2];
+  //   const nextLevelIndex =
+  //     chapter.levels.findIndex((lvl) => lvl.id === level.id) + 1;
+
+  //   if (nextLevelIndex < chapter.levels.length) {
+  //     // Navigate to the next level when the user clicks the button.
+  //     const nextLevelId = chapter.levels[nextLevelIndex].id;
+  //     router.push(`/subjects/${subjectId}/${chapterId}/${nextLevelId}`);
+
+  //     // Reset states for the next level.
+  //     setCurrentQuestionIndex(0); // Reset question index for the next level.
+  //     setScore(0); // Optionally, reset the score if needed.
+  //     setShowCompletionMessage(false); // Hide the congratulatory message.
+  //   } else {
+  //     // If all levels in the chapter are completed, show a final message.
+  //     setFinalMessage(true);
+  //     alert("Congratulations! You have completed all levels in this chapter.");
+
+  //     // Optionally, navigate to a chapter summary or back to the chapter list.
+  //   }
+  // };
+
+
   const handleNextQuestion = () => {
     if (currentQuestionIndex < level.questions.length - 1) {
+      // Move to the next question if there are more questions.
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      setShowResult(true);
+      // All questions answered, show the congratulatory message.
+      setShowCompletionMessage(true);
+      
+      // Check if all questions are answered and then set finalMessage if needed
+      const segments = pathname.split("/").filter(Boolean);
+      const subjectId = segments[1];
+      const chapterId = segments[2];
+      const nextLevelIndex = chapter.levels.findIndex((lvl) => lvl.id === level.id) + 1;
+  
+      if (nextLevelIndex >= chapter.levels.length) {
+        // If all levels in the chapter are completed, set finalMessage to true.
+        setFinalMessage(true);
+        // alert("Congratulations! You have completed all levels in this chapter.");
+      }
     }
-    setShowResultCard(false); // Hide the result card after moving to the next question
+    setShowResultCard(false); // Hide the result card after each question.
+  };
+  
+
+  const handleNextLevel = () => {
+    const segments = pathname.split("/").filter(Boolean);
+    const subjectId = segments[1];
+    const chapterId = segments[2];
+    const nextLevelIndex =
+      chapter.levels.findIndex((lvl) => lvl.id === level.id) + 1;
+  
+    if (nextLevelIndex < chapter.levels.length) {
+      // Navigate to the next level when the user clicks the button.
+      const nextLevelId = chapter.levels[nextLevelIndex].id;
+      router.push(`/subjects/${subjectId}/${chapterId}/${nextLevelId}`);
+  
+      // Reset states for the next level.
+      setCurrentQuestionIndex(0); // Reset question index for the next level.
+      setScore(0); // Optionally, reset the score if needed.
+      setShowCompletionMessage(false); // Hide the congratulatory message.
+      setFinalMessage(false); // Reset finalMessage when moving to the next level.
+    } else {
+      // If all levels in the chapter are completed, show a final message.
+      setFinalMessage(true);
+      // alert("Congratulations! You have completed all levels in this chapter.");
+      router.push('/subjects')
+      // Optionally, navigate to a chapter summary or back to the chapter list.
+    }
   };
 
+  
   const handleCancel = () => {
     setShowResultCard(false); // Hide the result card
   };
@@ -501,7 +584,7 @@ export default function QuizPage() {
     return <div>Content not found!</div>;
   }
 
-    const promptToClose = () => setPrompt(true);
+  const promptToClose = () => setPrompt(true);
   const confirmExit = (choice) => {
     if (choice === "yes") {
       router.push("/");
@@ -511,8 +594,31 @@ export default function QuizPage() {
   };
 
   const currentQuestion = level?.questions?.[currentQuestionIndex];
-  const feedback = currentQuestion?.feedBack?.[0] || { forCorrect: "No feedback available", forWrong: "No feedback available" };
-  
+  const feedback = currentQuestion?.feedBack?.[0] || {
+    forCorrect: "No feedback available",
+    forWrong: "No feedback available",
+  };
+
+  // const handleNextLevel = () => {
+  //   const segments = pathname.split("/").filter(Boolean);
+  //   const subjectId = segments[1];
+  //   const chapterId = segments[2];
+  //   const nextLevelIndex = chapter.levels.findIndex(lvl => lvl.id === level.id) + 1;
+
+  //   if (nextLevelIndex < chapter.levels.length) {
+  //     const nextLevelId = chapter.levels[nextLevelIndex].id;
+  //     router.push(`/subjects/${subjectId}/${chapterId}/${nextLevelId}`);
+  //     setShowCompletionMessage(false); // Hide the congratulatory message
+  //     setCurrentQuestionIndex(0); // Reset the question index for the next level
+  //     setScore(0); // Optionally, reset the score if needed
+  //   } else {
+  //     alert("Congratulations! You have completed all levels in this chapter.");
+  //     // Optionally, navigate to a chapter summary or back to the chapter list
+  //   }
+  //   setShowCompletionMessage(false);
+  //   setCurrentQuestionIndex(0); // Reset question index for the next level
+  //   setScore(0); // Optionally, reset the score if needed
+  // };
 
   return (
     <motion.div
@@ -523,13 +629,21 @@ export default function QuizPage() {
       className="flex flex-col items-center h-screen pt-5 pb-5 justify-between "
     >
       <div>
-      <X className="fixed top-5 left-5  text-white cursor-pointer" onClick={promptToClose} />
+        <X
+          className="fixed top-5 left-5  text-white cursor-pointer"
+          onClick={promptToClose}
+        />
       </div>
-      <ProgressBar currentQuestionIndex={currentQuestionIndex} totalQuestions={level.questions.length} />
+      <ProgressBar
+        currentQuestionIndex={currentQuestionIndex}
+        totalQuestions={level.questions.length}
+      />
       <h2 className="text-white text-xl text-center font-semibold h-10">
         Question {currentQuestionIndex + 1} of {level.questions.length}
       </h2>
-      <p className="text-lg font-bold text-white">{level.questions[currentQuestionIndex].question}</p>
+      <p className="text-lg font-bold text-white">
+        {level.questions[currentQuestionIndex].question}
+      </p>
       <Image src={bird} />
       <ul className="flex flex-col gap-5">
         {level.questions[currentQuestionIndex].options.map((option, index) => (
@@ -537,7 +651,9 @@ export default function QuizPage() {
             <button
               onClick={() => setSelectedAnswer(index)}
               className={`w-full h-full rounded-full border-2 ${
-                selectedAnswer === index ? 'border-green-500 text-green-500' : 'border-gray-500 text-gray-500 transition-all ease-in-out duration-300'
+                selectedAnswer === index
+                  ? "border-green-500 text-green-500"
+                  : "border-gray-500 text-gray-500 transition-all ease-in-out duration-300"
               } text-center flex items-center justify-center`}
             >
               {option}
@@ -548,7 +664,9 @@ export default function QuizPage() {
       <button
         onClick={handleAnswerSubmit}
         className={`bottom-5 w-[350px] h-14 font-bold rounded-full ${
-          selectedAnswer !== null ? "bg-green-500 text-white transition-all ease-in-out duration-300" : "bg-[#767676]  text-[#4d4d4d]"
+          selectedAnswer !== null
+            ? "bg-green-500 text-white transition-all ease-in-out duration-300"
+            : "bg-[#767676]  text-[#4d4d4d]"
         }`}
       >
         Submit
@@ -589,77 +707,113 @@ export default function QuizPage() {
         )}
       </AnimatePresence>
       <AnimatePresence>
-      {showResultCard && (
-        
-        <div className="fixed inset-0  backdrop-blur-lg bg-opacity-50 flex items-center justify-center z-40">
-        <motion.div
-          className={` top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[350px] h-[400px]  shadow-lg  bg-[#75BC7B] flex flex-col items-center justify-around rounded-2xl
+        {showResultCard && (
+          <div className="fixed inset-0  backdrop-blur-lg bg-opacity-50 flex items-center justify-center z-40">
+            <motion.div
+              className={` top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[350px] h-[400px]  shadow-lg  bg-[#75BC7B] flex flex-col items-center justify-around rounded-2xl
 `}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0 }} // Exit animation
               transition={{ duration: 0.2, ease: "easeInOut" }}
               onClick={(e) => e.stopPropagation()}
-        >
-
-          <span className={`text-lg font-bold ${isCorrect ? 'text-green-500' : 'text-red-500'}`}>
-            {isCorrect ? "Correct Answer!" : "Wrong Answer"}
-          </span>
-          <h1 className="font-semibold text-lg text-black">
-          {isCorrect ? feedback.forCorrect : feedback.forWrong}
+            >
+              <span
+                className={`text-lg font-bold ${
+                  isCorrect ? "text-green-500" : "text-red-500"
+                }`}
+              >
+                {isCorrect ? "Correct Answer!" : "Wrong Answer"}
+              </span>
+              <h1 className="font-semibold text-lg text-black">
+                {isCorrect ? feedback.forCorrect : feedback.forWrong}
               </h1>
-          <div className="flex justify-around w-full mt-4 ">
-            {isCorrect &&(
-
-            <button
-            className="w-28 h-10 bg-white text-black font-bold text-lg rounded-full"
-              onClick={handleNextQuestion} // Proceed to next question
-            >
-              Next
-            </button> 
-            )}
-            <button
-              onClick={handleCancel} // Hide the result card
-              className="w-28 h-10 bg-white text-black font-bold text-lg rounded-full"
-            >
-              Cancel
-            </button>
+              <div className="flex justify-around w-full mt-4 ">
+                {isCorrect && (
+                  <button
+                    className="w-28 h-10 bg-white text-black font-bold text-lg rounded-full"
+                    onClick={handleNextQuestion} // Proceed to next question
+                  >
+                    Next
+                  </button>
+                )}
+                <button
+                  onClick={handleCancel} // Hide the result card
+                  className="w-28 h-10 bg-white text-black font-bold text-lg rounded-full"
+                >
+                  Cancel
+                </button>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showCompletionMessage && (
+          <div className="fixed inset-0 backdrop-blur-lg bg-opacity-50 flex items-center justify-center z-50">
+            <motion.div
+              className="w-[350px] h-[400px] bg-[#2D2A2B] flex flex-col items-center justify-around rounded-2xl shadow-lg p-4"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+            >
+              <LottieAnimations
+                animationData={congratulations}
+                loop={true}
+                className="-mt-20"
+              />
+              
+              {finalMessage ? (
+                
+                <div className="flex flex-col items-center justify-center gap-5">
+              <h2 className="text-white font-bold text-xl -mt-20">
+                Hooraayyy!
+              </h2>
+                
+                <p className="text-white text-center my-1">
+                 
+               
+                      You have completed all the levels. Go to next topic!
+                   
+                 
+                </p>
+                <div
+                  className="w-36 h-14 flex items-center justify-center bg-[#75BC7B] text-white font-semibold text-lg rounded-full mt-"
+                  onClick={handleNextLevel}
+                >
+                  Next Topic
+                </div>
+                </div>
+              ):(
+                <div className="flex flex-col items-center justify-center gap-5">
+                 <h2 className="text-white font-bold text-xl -mt-20">
+                Congratulations!
+              </h2>
+                <p className="text-white text-center my-1">
+                 
+               
+                      You have completed this level. Get ready for the next
+                      challenge!
+                   
+                 
+                </p>
+                <div
+                  className="w-36 h-14 flex items-center justify-center bg-[#75BC7B] text-white font-semibold text-lg rounded-full mt-"
+                  onClick={handleNextLevel}
+                >
+                  Next Level
+                </div>
+                </div>
+              )}
+              
+            </motion.div>
+          </div>
+        )}
       </AnimatePresence>
     </motion.div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 // import { usePathname, useRouter } from "next/navigation";
@@ -783,13 +937,13 @@ export default function QuizPage() {
 //   const handleAnswerSubmit = () => {
 //     const currentQuestion = level?.questions?.[currentQuestionIndex];
 //     if (!currentQuestion) return;
-  
+
 //     const selectedAnswerText = currentQuestion.options[selectedAnswer];
 //     if (!selectedAnswerText) {
 //       alert("Please select an answer");
 //       return;
 //     }
-  
+
 //     const correct = selectedAnswerText === currentQuestion.answer;
 //     setIsCorrect(correct);
 //     setFlipped(true);
@@ -798,15 +952,14 @@ export default function QuizPage() {
 //   //   setTimeout(() => {
 //   //     if (correct) {
 //   //       setScore(score + 1);
-        
-  
+
 //   //       if (currentQuestionIndex < level.questions.length - 1) {
 //   //         setCurrentQuestionIndex(currentQuestionIndex + 1);
 //   //       } else {
 //   //         setShowResult(true);
 //   //       }
 //   //     }
-  
+
 //   //     setFlipped(false);
 //   //     setSelectedAnswer(null);
 //   //   }, 1500);
@@ -815,7 +968,7 @@ export default function QuizPage() {
 //     if (correct) {
 //       setScore(score + 1);
 //     }
-    
+
 //     // Do not change the question if the answer is incorrect
 //     if (correct && currentQuestionIndex < level.questions.length - 1) {
 //       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -831,7 +984,6 @@ export default function QuizPage() {
 //     }, 350000);
 //   }, 0);
 // };
-  
 
 //   const handleNextLevel = () => {
 //     const currentLevelIndex = chapter.levels.findIndex(
