@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
+import Loading from '@/components/Loading';
 
 const AuthContext = createContext();
 
@@ -12,8 +13,8 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setLoading(true); // Set loading to true immediately
       if (currentUser) {
-        // Fetch user details from Firestore
         try {
           const userDocRef = doc(db, 'users', currentUser.uid);
           const userDoc = await getDoc(userDocRef);
@@ -23,7 +24,7 @@ export const AuthProvider = ({ children }) => {
             setUser({
               uid: currentUser.uid,
               email: currentUser.email,
-              displayName: userData.name || currentUser.displayName,
+              displayName: userData.name || currentUser.displayName || 'Guest',
               phoneNumber: userData.phoneNumber || '',
             });
           } else {
@@ -35,12 +36,12 @@ export const AuthProvider = ({ children }) => {
           }
         } catch (error) {
           console.error("Error fetching user data from Firestore:", error);
+          setUser(null); // Set user to null in case of error
         }
       } else {
         setUser(null);
       }
-
-      setLoading(false);
+      setLoading(false); // Ensure loading is set to false after processing
     });
 
     return () => unsubscribe();
@@ -48,7 +49,9 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
-      {loading ? <p className='text-red-950'>Loading...</p> : children}
+      {loading ? <div className="flex items-center justify-center h-screen">
+        <Loading/>
+      </div> : children}
     </AuthContext.Provider>
   );
 };

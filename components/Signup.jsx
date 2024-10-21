@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext"; // Adjust path as needed
 import { MoveLeft } from "lucide-react";
 import useRedirectIfAuthenticated from "@/hooks/useRedirectIfAuthenticated"; // Adjust the path as necessary
-
+import { motion } from "framer-motion";
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +53,13 @@ export default function Signup() {
     router.push("/welcome");
   };
   return (
-    <div className="relative w-full max-w-sm mx-auto mt-20 px-5 flex flex-col gap-10">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ ease: "easeInOut", duration: 0.5 }}
+      className="relative w-full max-w-sm mx-auto mt-20 px-5 flex flex-col gap-10"
+    >
       <MoveLeft
         color="white"
         size={32}
@@ -61,18 +67,17 @@ export default function Signup() {
         onClick={handleClick}
       />
       <h2>Sign Up</h2>
-      <div className='flex flex-col gap-4'>
-        <label className='text-[#EDEDED] text-lg'>Name</label>
+      <div className="flex flex-col gap-4">
+        <label className="text-[#EDEDED] text-lg">Name</label>
         <input
           className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
       </div>
-      <div className='flex flex-col gap-4'>
-      <label className='text-[#EDEDED] text-lg'>Phone</label>
+      <div className="flex flex-col gap-4">
+        <label className="text-[#EDEDED] text-lg">Phone</label>
         <input
           className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]"
           placeholder="Phone Number"
@@ -80,17 +85,17 @@ export default function Signup() {
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
       </div>
-      <div className='flex flex-col gap-4'>
-      <label className='text-[#EDEDED] text-lg'>Email</label>
-      <input
-        className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <div className="flex flex-col gap-4">
+        <label className="text-[#EDEDED] text-lg">Email</label>
+        <input
+          className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
-      <div className='flex flex-col gap-4'>
-      <label className='text-[#EDEDED] text-lg'>Password</label>
+      <div className="flex flex-col gap-4">
+        <label className="text-[#EDEDED] text-lg">Password</label>
         <input
           className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]"
           type="password"
@@ -100,6 +105,6 @@ export default function Signup() {
         />
       </div>
       <button onClick={handleSignup}>Sign Up</button>
-    </div>
+    </motion.div>
   );
 }
