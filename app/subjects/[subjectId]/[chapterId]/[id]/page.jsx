@@ -690,13 +690,13 @@ export default function QuizPage() {
               </h1>
               <div className="flex gap-5">
                 <button
-                  className="w-28 h-14 bg-white text-black font-bold text-lg rounded-full"
+                  className="w-32 h-12 bg-white text-black font-bold text-lg rounded-full"
                   onClick={() => confirmExit("yes")}
                 >
                   Yes
                 </button>
                 <button
-                  className="w-28 h-14 bg-black text-white font-bold text-lg rounded-full"
+                  className="w-32 h-12 bg-black text-white font-bold text-lg rounded-full"
                   onClick={() => confirmExit("no")}
                 >
                   No
@@ -731,7 +731,7 @@ export default function QuizPage() {
               <div className="flex justify-around w-full mt-4 ">
                 {isCorrect && (
                   <button
-                    className="w-28 h-14 bg-white text-black font-bold text-lg rounded-full"
+                    className="w-32 h-12 bg-white text-black font-bold text-lg rounded-full"
                     onClick={handleNextQuestion} // Proceed to next question
                   >
                     Next
@@ -739,7 +739,7 @@ export default function QuizPage() {
                 )}
                 <button
                   onClick={handleCancel} // Hide the result card
-                  className="w-28 h-14 bg-white text-black font-bold text-lg rounded-full"
+                  className="w-32 h-12 bg-white text-black font-bold text-lg rounded-full"
                 >
                   Cancel
                 </button>
