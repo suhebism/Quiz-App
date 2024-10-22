@@ -13,7 +13,7 @@ export default function Login() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { user } = useAuth();
-
+  const [showPassword, setShowPassword] = useState(false);
   useEffect(() => {
     if (user) {
       router.push('/');
@@ -85,14 +85,18 @@ export default function Login() {
         </div>
         <div className='flex flex-col gap-4'>
           <label className='text-[#EDEDED] text-lg'>Password</label>
+          <div className="relative w-full flex">
+
           <input
-            className='bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]'
-            type="password"
+            className='bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828] w-full'
+            type={showPassword ? 'text' : 'password'}
             placeholder="your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <p onClick={() => setShowPassword(!showPassword)} className="cursor-pointer absolute right-0 top-0 text-gray-500">{showPassword ? '🙈' : '👁️'}</p>
+          </div>
         </div>
         <p className='text-[#75BC7B] text-xs font-medium'>Forgot password?</p>
       </div>
