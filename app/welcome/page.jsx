@@ -6,6 +6,8 @@ import { motion } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext'; 
 import { useRouter } from 'next/navigation';
 import Loading from '@/components/Loading';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '@/lib/firebase'; // Adjust the path as needed
 
 const Page = () => {
   const { user, loading } = useAuth(); 
@@ -17,10 +19,21 @@ const Page = () => {
     }
   }, [user, loading, router]);
 
-  // Render nothing if loading
+  // Render a loading spinner if loading
   if (loading) {
-    return null; // Prevents flickering by not rendering the page during loading
+    return <Loading />; // Assuming you have a Loading component for the spinner
   }
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      alert('Logged in with Google successfully!');
+      router.push('/');
+    } catch (error) {
+      console.error('Error with Google sign-in:', error);
+      alert('Error with Google sign-in: ' + error.message);
+    }
+  };
 
   return (
     <motion.div
@@ -43,11 +56,11 @@ const Page = () => {
         <div className="flex flex-col items-center gap-5">
           <p className="text-white">or via social media</p>
           <div className="flex items-center gap-8">
+            <button onClick={handleGoogleSignIn}>
+              <img src="/icons/google.svg" alt="Google" />
+            </button>
             <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer">
               <img src="/icons/facebook.svg" alt="Facebook" />
-            </Link>
-            <Link href="https://google.com" target="_blank" rel="noopener noreferrer">
-              <img src="/icons/google.svg" alt="Google" />
             </Link>
             <Link href="https://whatsapp.com" target="_blank" rel="noopener noreferrer">
               <img src="/icons/whatsapp.svg" alt="WhatsApp" />
