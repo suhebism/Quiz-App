@@ -767,9 +767,10 @@ export default function QuizPage() {
                   <LottieAnimations
                 animationData={hooray}
                 loop={true}
-                className="-mt-20 w-20"
+                className="-mt-10 w-20"
+                style={{ width: 200, height: 200 }}
               />
-              <h2 className="text-white font-bold text-xl -mt-20">
+              <h2 className="text-white font-bold text-xl -mt-10">
                 Hooraayyy!
               </h2>
                 

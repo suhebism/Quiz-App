@@ -1,14 +1,15 @@
 // components/LottieAnimation.js
 import React from 'react';
 import Lottie from 'lottie-react';
+import { style } from 'motion';
 
-const LottieAnimation = ({ animationData, loop = true, autoplay = true ,className}) => {
+const LottieAnimation = ({ animationData, loop = true, autoplay = true ,className, style}) => {
   return (
     <Lottie 
       animationData={animationData} 
       loop={loop} 
       autoplay={autoplay}
-      style={{ width: 300, height: 300 }} // Adjust the size as needed
+      style={style} // Adjust the size as needed
       className={className}
     />
   );
