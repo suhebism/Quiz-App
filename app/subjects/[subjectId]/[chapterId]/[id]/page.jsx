@@ -343,6 +343,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Info, MoveLeft } from "lucide-react";
 import congratulations from "@/public/animation/congratulations.json";
+import hooray from "@/public/animation/hooray.json";
 import LottieAnimations from "@/components/LottieAnimations";
 import Image from "next/image";
 import bird from "@/public/img/bird.png";
@@ -758,15 +759,16 @@ export default function QuizPage() {
               exit={{ scale: 0 }}
               transition={{ duration: 0.2, ease: "easeInOut" }}
             >
-              <LottieAnimations
-                animationData={congratulations}
-                loop={true}
-                className="-mt-20"
-              />
+              
               
               {finalMessage ? (
                 
                 <div className="flex flex-col items-center justify-center gap-5">
+                  <LottieAnimations
+                animationData={hooray}
+                loop={true}
+                className="-mt-20 w-20"
+              />
               <h2 className="text-white font-bold text-xl -mt-20">
                 Hooraayyy!
               </h2>
@@ -787,6 +789,11 @@ export default function QuizPage() {
                 </div>
               ):(
                 <div className="flex flex-col items-center justify-center gap-5">
+                  <LottieAnimations
+                animationData={congratulations}
+                loop={true}
+                className="-mt-20"
+              />
                  <h2 className="text-white font-bold text-xl -mt-20">
                 Congratulations!
               </h2>
