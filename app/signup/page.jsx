@@ -100,7 +100,7 @@ export default function Signup() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}
-      className="relative w-full max-w-sm mx-auto mt-20 px-5 flex flex-col gap-10"
+      className="relative w-full max-w-sm mx-auto mt-20 px-5 flex flex-col gap-5"
     >
       <MoveLeft
         color="white"
