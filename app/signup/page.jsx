@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { createUserWithEmailAndPassword ,signInWithPopup} from "firebase/auth";
-import {  auth, googleProvider, db } from "@/lib/firebase";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider, db } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext"; // Adjust path as needed
@@ -16,8 +16,11 @@ export default function Signup() {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const router = useRouter();
-  const { user, loading } = useAuth(); 
+  const { user, loading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const [next, setNext] = useState(false);
+  const [previous, setPrevious] = useState(true);
+  const [isSigningUp, setIsSigningUp] = useState();
   // useEffect(() => {
   //   if (user) {
   //     console.log('User is already logged in, redirecting to home.');
@@ -27,6 +30,7 @@ export default function Signup() {
   useRedirectIfAuthenticated(); // Use the redirect hook
 
   const handleSignup = async () => {
+    setIsSigningUp(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -49,15 +53,18 @@ export default function Signup() {
     } catch (error) {
       console.error("Error signing up:", error);
       alert("Error signing up: " + error.message);
+    } finally{
+      setIsSigningUp(false);
     }
   };
+
   const handleClick = () => {
     router.push("/welcome");
   };
 
   useEffect(() => {
     if (!loading && user) {
-      router.push('/'); // Redirect to home if user is authenticated
+      router.push("/"); // Redirect to home if user is authenticated
     }
   }, [user, loading, router]);
 
@@ -65,24 +72,35 @@ export default function Signup() {
   if (loading) {
     return <Loading />; // Assuming you have a Loading component for the spinner
   }
-
+ if (isSigningUp || loading) {
+    return <Loading />;
+  }
   const handleGoogleSignIn = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      alert('Logged in with Google successfully!');
-      router.push('/');
+      alert("Logged in with Google successfully!");
+      router.push("/");
     } catch (error) {
-      console.error('Error with Google sign-in:', error);
-      alert('Error with Google sign-in: ' + error.message);
+      console.error("Error with Google sign-in:", error);
+      alert("Error with Google sign-in: " + error.message);
     }
   };
+
+  const handleNext =()=>{
+    setNext(true);
+    setPrevious(false)
+  }
+  const handlePrevious =()=>{
+    setNext(false)
+    setPrevious(true)
+  }
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}
-      className="relative w-full max-w-sm mx-auto mt-20 px-5 flex flex-col gap-5"
+      className="relative w-full max-w-sm mx-auto mt-20 px-5 flex flex-col gap-10"
     >
       <MoveLeft
         color="white"
@@ -90,42 +108,90 @@ export default function Signup() {
         className="cursor-pointer absolute -top-16"
         onClick={handleClick}
       />
-      <h2 className="font-medium text-3xl text-white text-center">Register for free</h2>
+      <h2 className="font-medium text-3xl text-white text-center">
+        Register for free
+      </h2>
+
+      <button
+        className="px-8 h-14 bg-transparent border-[#292828] border-[1px] rounded-full text-center flex items-center justify-center gap-2"
+        onClick={handleGoogleSignIn}
+      >
+        <img src="/icons/google.svg" className="w-6 left-10 absolute" alt="" />
+        <h1 className="text-sm font-semibold text-center text-[#EDEDED]">
+          Continue with Google
+        </h1>
+      </button>
+      <button
+        className="px-8 h-14 bg-transparent border-[#292828] border-[1px] rounded-full text-center flex items-center justify-center gap-2"
+        onClick={handleGoogleSignIn}
+      >
+        <img
+          src="/icons/facebook.svg"
+          alt="Facebook"
+          className="w-7 left-10 absolute"
+        />
+        <h1 className="text-sm font-semibold text-center text-[#EDEDED]">
+          Continue with Facebook
+        </h1>
+      </button>
+      <div className="w-full flex items-center">
+        <div className="bg-[#292828] w-[45%] h-[1px]"></div>
+        <div className="text-[#292828]">OR</div>
+        <div className="bg-[#292828] w-[45%] h-[1px]"></div>
+      </div>
      
-      <button className='px-8 h-14 bg-transparent border-[#292828] border-[1px] rounded-full text-center flex items-center justify-center gap-2'
-      onClick={handleGoogleSignIn}>
-        <img src="/icons/google.svg" className='w-6 left-10 absolute' alt="" />
-        <h1 className='text-sm font-semibold text-center text-[#EDEDED]'>Continue with Google</h1>
+        {next &&(
+          <>
+          <div className="flex flex-col gap-4">
+          <label className="text-[#EDEDED] text-lg">Name</label>
+          <input
+            className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col gap-4">
+          <label className="text-[#EDEDED] text-lg">Phone</label>
+          <input
+            className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+        </div>
+        
+        <div className="flex flex-col gap-4">
+          <label className="text-[#EDEDED] text-lg">Password</label>
+          <div className="relative w-full flex">
+            <input
+              className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828] w-full"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <p
+              onClick={() => setShowPassword(!showPassword)}
+              className="cursor-pointer absolute right-0 top-0 text-gray-500"
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </p>
+          </div>
+        </div>
+        <button
+        className="px-8 h-14 bg-white rounded-full text-black font-medium text-center flex items-center justify-center"
+        onClick={handleSignup}
+      >
+        Continue with email
       </button>
-      <button className='px-8 h-14 bg-transparent border-[#292828] border-[1px] rounded-full text-center flex items-center justify-center gap-2'
-      onClick={handleGoogleSignIn}>
-        <img src="/icons/facebook.svg" alt="Facebook" className='w-7 left-10 absolute'  />
-        <h1 className='text-sm font-semibold text-center text-[#EDEDED]'>Continue with Facebook</h1>
-      </button>
-      <div className='w-full flex items-center'>
-        <div className='bg-[#292828] w-[45%] h-[1px]'></div>
-        <div className='text-[#292828]'>OR</div>
-        <div className='bg-[#292828] w-[45%] h-[1px]'></div>
-      </div>
-      <div className="flex flex-col gap-4">
-        <label className="text-[#EDEDED] text-lg">Name</label>
-        <input
-          className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col gap-4">
-        <label className="text-[#EDEDED] text-lg">Phone</label>
-        <input
-          className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]"
-          placeholder="Phone Number"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col gap-4">
+      </>
+        )
+
+      }
+      {previous && (
+        <>
+        <div className="flex flex-col gap-4">
         <label className="text-[#EDEDED] text-lg">Email</label>
         <input
           className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828]"
@@ -134,21 +200,21 @@ export default function Signup() {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div className="flex flex-col gap-4">
-        <label className="text-[#EDEDED] text-lg">Password</label>
-        <div className="relative w-full flex">
-          <input
-            className="bg-transparent border-b-[1px] border-[#292828] outline-none text-[#EDEDED] placeholder-[#292828] w-full"
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <p onClick={() => setShowPassword(!showPassword)} className="cursor-pointer absolute right-0 top-0 text-gray-500">{showPassword ? '🙈' : '👁️'}</p>
-        </div>
-      </div>
-      <button className="px-8 h-14 bg-white rounded-full text-black font-medium text-center flex items-center justify-center" onClick={handleSignup}>Continue with email</button>
-      <p className="text-white text-xs font-medium text-center">Already have an account? <Link href='/login' className="text-[#75BC7B]">Login</Link></p>
+      <button
+        className="px-8 h-14 bg-white rounded-full text-black font-medium text-center flex items-center justify-center"
+        onClick={handleNext}
+      >
+        Continue with email
+      </button>
+        </>
+      )}
+      
+      <p className="text-white text-xs font-medium text-center">
+        Already have an account?{" "}
+        <Link href="/login" className="text-[#75BC7B]">
+          Login
+        </Link>
+      </p>
     </motion.div>
   );
 }
