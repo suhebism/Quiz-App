@@ -440,6 +440,16 @@ export default function QuizPage() {
     setIsCorrect(correct);
     setShowResultCard(true); // Show the result card
 
+
+    const correctAnswerSound = new Audio("/sound/correctAnswer.mp3");
+    
+    // Play sound or vibrate based on correctness
+     if (correct) {
+    correctAnswerSound.play(); // Play the correct answer sound
+  } else {
+    navigator.vibrate(500); // Vibrate the device for a wrong answer (200 milliseconds)
+  }
+
     // Reset selected answer for the next question
     setSelectedAnswer(null);
 
@@ -449,83 +459,16 @@ export default function QuizPage() {
     }
   };
 
-  // const handleNextQuestion = () => {
-  //   if (currentQuestionIndex < level.questions.length - 1) {
-  //     setCurrentQuestionIndex(currentQuestionIndex + 1);
-  //   } else {
-  //     setShowResult(true);
-  //   }
-  //   setShowResultCard(false); // Hide the result card after moving to the next question
-  // };
-
-  // const handleNextQuestion = () => {
-  //   if (currentQuestionIndex < level.questions.length - 1) {
-  //     setCurrentQuestionIndex(currentQuestionIndex + 1);
-  //   } else {
-  //     // All questions answered, proceed to the next level
-  //     const segments = pathname.split("/").filter(Boolean);
-  //     const subjectId = segments[1];
-  //     const chapterId = segments[2];
-  //     const nextLevelIndex = chapter.levels.findIndex(lvl => lvl.id === level.id) + 1;
-  //     setShowCompletionMessage(true);
-
-  //     if (nextLevelIndex < chapter.levels.length) {
-  //       const nextLevelId = chapter.levels[nextLevelIndex].id;
-  //       router.push(`/subjects/${subjectId}/${chapterId}/${nextLevelId}`);
-
-  //     } else {
-  //       alert("Congratulations! You have completed all levels in this chapter.");
-  //       // Optionally, navigate to a chapter summary or back to the chapter list
-  //     }
-  //   }
-  //   setShowResultCard(false); // Hide the result card after moving to the next question or level
-  // };
-
-  // const handleNextQuestion = () => {
-  //   if (currentQuestionIndex < level.questions.length - 1) {
-  //     // Move to the next question if there are more questions.
-  //     setCurrentQuestionIndex(currentQuestionIndex + 1);
-  //   } else {
-  //     // All questions answered, show the congratulatory message.
-  //     setShowCompletionMessage(true);
-  //   }
-  //   setShowResultCard(false); // Hide the result card after each question.
-  // };
-
-  // const handleNextLevel = () => {
-  //   const segments = pathname.split("/").filter(Boolean);
-  //   const subjectId = segments[1];
-  //   const chapterId = segments[2];
-  //   const nextLevelIndex =
-  //     chapter.levels.findIndex((lvl) => lvl.id === level.id) + 1;
-
-  //   if (nextLevelIndex < chapter.levels.length) {
-  //     // Navigate to the next level when the user clicks the button.
-  //     const nextLevelId = chapter.levels[nextLevelIndex].id;
-  //     router.push(`/subjects/${subjectId}/${chapterId}/${nextLevelId}`);
-
-  //     // Reset states for the next level.
-  //     setCurrentQuestionIndex(0); // Reset question index for the next level.
-  //     setScore(0); // Optionally, reset the score if needed.
-  //     setShowCompletionMessage(false); // Hide the congratulatory message.
-  //   } else {
-  //     // If all levels in the chapter are completed, show a final message.
-  //     setFinalMessage(true);
-  //     alert("Congratulations! You have completed all levels in this chapter.");
-
-  //     // Optionally, navigate to a chapter summary or back to the chapter list.
-  //   }
-  // };
-
-
   const handleNextQuestion = () => {
+    const levelCompletionSound = new Audio("/sound/levelCompletion.mp3");
+
     if (currentQuestionIndex < level.questions.length - 1) {
       // Move to the next question if there are more questions.
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       // All questions answered, show the congratulatory message.
       setShowCompletionMessage(true);
-      
+      levelCompletionSound.play();
       // Check if all questions are answered and then set finalMessage if needed
       const segments = pathname.split("/").filter(Boolean);
       const subjectId = segments[1];
@@ -541,6 +484,7 @@ export default function QuizPage() {
     setShowResultCard(false); // Hide the result card after each question.
   };
   
+  const levelCompletionSound = new Audio("/sound/levelCompletion.mp3");
 
   const handleNextLevel = () => {
     const segments = pathname.split("/").filter(Boolean);
@@ -565,7 +509,12 @@ export default function QuizPage() {
       // alert("Congratulations! You have completed all levels in this chapter.");
       router.push('/subjects')
       // Optionally, navigate to a chapter summary or back to the chapter list.
+
     }
+    // levelCompletionSound.play().catch((error) => {
+    //   console.error("Failed to play level completion sound:", error);
+    // });
+  
   };
 
   
@@ -759,10 +708,7 @@ export default function QuizPage() {
               exit={{ scale: 0 }}
               transition={{ duration: 0.2, ease: "easeInOut" }}
             >
-              
-              
               {finalMessage ? (
-                
                 <div className="flex flex-col items-center justify-center gap-5">
                   <LottieAnimations
                 animationData={hooray}
