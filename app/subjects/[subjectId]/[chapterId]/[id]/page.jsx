@@ -447,7 +447,7 @@ export default function QuizPage() {
      if (correct) {
     correctAnswerSound.play(); // Play the correct answer sound
   } else {
-    navigator.vibrate(500); // Vibrate the device for a wrong answer (200 milliseconds)
+    navigator.vibrate(200); // Vibrate the device for a wrong answer (200 milliseconds)
   }
 
     // Reset selected answer for the next question
