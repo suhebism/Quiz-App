@@ -7,7 +7,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import Loading from '@/components/Loading';
 import { signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider } from '@/lib/firebase'; // Adjust the path as needed
+import { auth, googleProvider,provider, } from '@/lib/firebase'; // Adjust the path as needed
 
 const Page = () => {
   const { user, loading } = useAuth(); 
@@ -35,6 +35,19 @@ const Page = () => {
     }
   };
 
+
+  const handleFacebookLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      // You can access user info here
+      const user = result.user;
+      console.log('User info:', user);
+      router.push('/home'); // Redirect to home or wherever after login
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -59,9 +72,9 @@ const Page = () => {
             <button onClick={handleGoogleSignIn}>
               <img src="/icons/google.svg" alt="Google" />
             </button>
-            <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <button onClick={handleFacebookLogin} href="https://facebook.com" target="_blank" rel="noopener noreferrer">
               <img src="/icons/facebook.svg" alt="Facebook" />
-            </Link>
+            </button>
             <Link href="https://whatsapp.com" target="_blank" rel="noopener noreferrer">
               <img src="/icons/whatsapp.svg" alt="WhatsApp" />
             </Link>

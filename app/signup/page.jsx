@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, googleProvider, db } from "@/lib/firebase";
+import { auth, googleProvider, db,provider } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext"; // Adjust path as needed
@@ -86,14 +86,23 @@ export default function Signup() {
     }
   };
 
+  const handleFacebookLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      // You can access user info here
+      const user = result.user;
+      console.log('User info:', user);
+      router.push('/home'); // Redirect to home or wherever after login
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
+  };
+
   const handleNext =()=>{
     setNext(true);
     setPrevious(false)
   }
-  const handlePrevious =()=>{
-    setNext(false)
-    setPrevious(true)
-  }
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -123,7 +132,7 @@ export default function Signup() {
         </button>
         <button
           className="px-8 h-14 bg-transparent border-[#292828] border-[1px] rounded-full text-center flex items-center justify-center gap-2"
-          onClick={handleGoogleSignIn}
+          onClick={handleFacebookLogin}
         >
           <img
             src="/icons/facebook.svg"
