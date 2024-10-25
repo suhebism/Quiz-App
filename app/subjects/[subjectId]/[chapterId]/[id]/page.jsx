@@ -343,6 +343,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X,Check,CircleX } from "lucide-react";
 import congratulations from "@/public/animation/congratulations.json";
+import flash from "@/public/animation/flash.json";
 import hooray from "@/public/animation/hooray.json";
 import LottieAnimations from "@/components/LottieAnimations";
 import Image from "next/image";
@@ -653,14 +654,19 @@ export default function QuizPage() {
         {showResultCard && (
           <div className="fixed inset-0  backdrop-blur-lg bg-opacity-50 flex items-center justify-center z-40">
             <motion.div
-              className={` top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[350px] h-[400px]  shadow-lg  ${bgColor} flex flex-col items-center justify-around rounded-2xl p-5
+              className={` top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[350px] h-[400px]  shadow-lg  bg-[#69B683] flex flex-col items-center justify-around rounded-2xl p-5
 `}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0 }} // Exit animation
               transition={{ duration: 0.2, ease: "easeInOut" }}
               onClick={(e) => e.stopPropagation()}
-            ><div>
+            >
+              <div className="w-10 h-10 rounded-full  absolute top-5 left-5 ">
+              <LottieAnimations animationData={flash} />
+
+              </div>
+              <div>
               {isCorrect ? (<Check className="text-white " strokeWidth={4} size={40} />):(<CircleX className="text-red-600" strokeWidth={3} size={40}/>)}
                
             </div>
@@ -677,7 +683,7 @@ export default function QuizPage() {
               <div className="flex justify-around w-full mt-4 ">
                 {isCorrect ? (
                   <button
-                    className="w-full h-12 bg-black text-white font-bold text-lg rounded-full"
+                    className="w-full h-14 bg-black text-white font-bold text-lg rounded-full"
                     onClick={handleNextQuestion} // Proceed to next question
                   >
                     Next
@@ -685,7 +691,7 @@ export default function QuizPage() {
                 ):(
                   <button
                     onClick={handleCancel} // Hide the result card
-                    className="w-full h-12 bg-black text-white font-bold text-lg rounded-full"
+                    className="w-full h-14 bg-black text-white font-bold text-lg rounded-full"
                   >
                     Try again
                   </button>
