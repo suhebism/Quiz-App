@@ -21,8 +21,8 @@ const quizData = {
                     answer: '4',
                     feedBack: [
                       {
-                        forCorrect: "Great job! reason",
-                        forWrong: "Try again! reason"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -33,8 +33,8 @@ const quizData = {
                     answer: '9',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -45,8 +45,8 @@ const quizData = {
                     answer: '3',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -57,8 +57,8 @@ const quizData = {
                     answer: '3',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -69,8 +69,8 @@ const quizData = {
                     answer: '4',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -87,8 +87,8 @@ const quizData = {
                     answer: '2',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -99,8 +99,8 @@ const quizData = {
                     answer: 'x + 5',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -111,8 +111,8 @@ const quizData = {
                     answer: '7x + 3',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -123,8 +123,8 @@ const quizData = {
                     answer: '4',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -135,8 +135,8 @@ const quizData = {
                     answer: '2',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -153,8 +153,8 @@ const quizData = {
                     answer: '6',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -165,8 +165,8 @@ const quizData = {
                     answer: '9',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -177,8 +177,8 @@ const quizData = {
                     answer: '3',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -195,8 +195,8 @@ const quizData = {
                     answer: '4',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -221,8 +221,8 @@ const quizData = {
                     answer: '20',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -233,8 +233,8 @@ const quizData = {
                     answer: '3',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -245,8 +245,8 @@ const quizData = {
                     answer: '6.28',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -257,8 +257,8 @@ const quizData = {
                     answer: '180 degrees',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -269,8 +269,8 @@ const quizData = {
                     answer: 'πr^2',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -301,8 +301,8 @@ const quizData = {
                     answer: 'Newton',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -313,8 +313,8 @@ const quizData = {
                     answer: 'Distance / Time',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -325,8 +325,8 @@ const quizData = {
                     answer: '9.8 m/s²',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -337,8 +337,8 @@ const quizData = {
                     answer: 'v',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -349,8 +349,8 @@ const quizData = {
                     answer: 'Objects in motion stay in motion',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -374,8 +374,8 @@ const quizData = {
                     answer: 'H2O',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -386,8 +386,8 @@ const quizData = {
                     answer: '7',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -398,8 +398,8 @@ const quizData = {
                     answer: 'Melting',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -410,8 +410,8 @@ const quizData = {
                     answer: 'List of elements',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     
@@ -422,8 +422,8 @@ const quizData = {
                     answer: 'Na',
                     feedBack: [
                       {
-                        forCorrect: "Great job!",
-                        forWrong: "Try again!"
+                        forCorrect: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+                        forWrong: "About Subject : is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
                       }
                     ]
                     

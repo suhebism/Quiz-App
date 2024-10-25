@@ -341,7 +341,7 @@ import { usePathname, useRouter } from "next/navigation";
 import quizData from "../../../../../data/quizData";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Info, MoveLeft } from "lucide-react";
+import { X,Check,CircleX } from "lucide-react";
 import congratulations from "@/public/animation/congratulations.json";
 import hooray from "@/public/animation/hooray.json";
 import LottieAnimations from "@/components/LottieAnimations";
@@ -368,6 +368,8 @@ export default function QuizPage() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [showCompletionMessage, setShowCompletionMessage] = useState(false);
   const [finalMessage, setFinalMessage] = useState(false);
+  const [bgColor, setBgColor] = useState('');
+
   useEffect(() => {
     const segments = pathname.split("/").filter(Boolean);
     const subjectId = segments[1];
@@ -443,7 +445,9 @@ export default function QuizPage() {
 
     const correctAnswerSound = new Audio("/sound/correctAnswer.mp3");
     
-    // Play sound or vibrate based on correctness
+    const randomIndex = Math.floor(Math.random() * flashCardBg.length);
+    setBgColor(flashCardBg[randomIndex]);
+
      if (correct) {
     correctAnswerSound.play(); // Play the correct answer sound
   } else {
@@ -549,26 +553,15 @@ export default function QuizPage() {
     forWrong: "No feedback available",
   };
 
-  // const handleNextLevel = () => {
-  //   const segments = pathname.split("/").filter(Boolean);
-  //   const subjectId = segments[1];
-  //   const chapterId = segments[2];
-  //   const nextLevelIndex = chapter.levels.findIndex(lvl => lvl.id === level.id) + 1;
+  const flashCardBg = [
+    'bg-[#69B3B6]',
+    'bg-[#7569B6]',
+    'bg-[#899DD5]',
+    'bg-[#FA8A5A]',
+    'bg-[#4F74EE]',
+  ];
 
-  //   if (nextLevelIndex < chapter.levels.length) {
-  //     const nextLevelId = chapter.levels[nextLevelIndex].id;
-  //     router.push(`/subjects/${subjectId}/${chapterId}/${nextLevelId}`);
-  //     setShowCompletionMessage(false); // Hide the congratulatory message
-  //     setCurrentQuestionIndex(0); // Reset the question index for the next level
-  //     setScore(0); // Optionally, reset the score if needed
-  //   } else {
-  //     alert("Congratulations! You have completed all levels in this chapter.");
-  //     // Optionally, navigate to a chapter summary or back to the chapter list
-  //   }
-  //   setShowCompletionMessage(false);
-  //   setCurrentQuestionIndex(0); // Reset question index for the next level
-  //   setScore(0); // Optionally, reset the score if needed
-  // };
+
 
   return (
     <motion.div
@@ -660,14 +653,17 @@ export default function QuizPage() {
         {showResultCard && (
           <div className="fixed inset-0  backdrop-blur-lg bg-opacity-50 flex items-center justify-center z-40">
             <motion.div
-              className={` top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[350px] h-[400px]  shadow-lg  bg-[#75BC7B] flex flex-col items-center justify-around rounded-2xl
+              className={` top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[350px] h-[400px]  shadow-lg  ${bgColor} flex flex-col items-center justify-around rounded-2xl p-5
 `}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0 }} // Exit animation
               transition={{ duration: 0.2, ease: "easeInOut" }}
               onClick={(e) => e.stopPropagation()}
-            >
+            ><div>
+              {isCorrect ? (<Check className="text-white " strokeWidth={4} size={40} />):(<CircleX className="text-red-600" strokeWidth={3} size={40}/>)}
+               
+            </div>
               <span
                 className={`text-lg font-bold ${
                   isCorrect ? "text-white" : "text-red-500"
@@ -675,24 +671,26 @@ export default function QuizPage() {
               >
                 {isCorrect ? "Correct Answer!" : "Wrong Answer"}
               </span>
-              <h1 className="font-semibold text-lg text-black">
+              <h1 className="font-semibold text-lg text-white text-center">
                 {isCorrect ? feedback.forCorrect : feedback.forWrong}
               </h1>
               <div className="flex justify-around w-full mt-4 ">
-                {isCorrect && (
+                {isCorrect ? (
                   <button
-                    className="w-32 h-12 bg-white text-black font-bold text-lg rounded-full"
+                    className="w-full h-12 bg-black text-white font-bold text-lg rounded-full"
                     onClick={handleNextQuestion} // Proceed to next question
                   >
                     Next
                   </button>
-                )}
-                <button
-                  onClick={handleCancel} // Hide the result card
-                  className="w-32 h-12 bg-white text-black font-bold text-lg rounded-full"
-                >
-                  Cancel
-                </button>
+                ):(
+                  <button
+                    onClick={handleCancel} // Hide the result card
+                    className="w-full h-12 bg-black text-white font-bold text-lg rounded-full"
+                  >
+                    Try again
+                  </button>
+                )
+                }
               </div>
             </motion.div>
           </div>
