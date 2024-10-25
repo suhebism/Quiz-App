@@ -341,15 +341,17 @@ import { usePathname, useRouter } from "next/navigation";
 import quizData from "../../../../../data/quizData";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X,Check,CircleX } from "lucide-react";
+import { X, Check, CircleX } from "lucide-react";
 import congratulations from "@/public/animation/congratulations.json";
-import flash from "@/public/animation/flash.json";
+import tick from "@/public/animation/tick.json";
 import hooray from "@/public/animation/hooray.json";
+import wrong from "@/public/animation/wrong.json";
 import LottieAnimations from "@/components/LottieAnimations";
 import Image from "next/image";
 import bird from "@/public/img/bird.png";
 import Loading from "@/components/Loading";
 import ProgressBar from "@/components/ProgressBar";
+import LottieAnimation from "@/components/LottieAnimations";
 
 export default function QuizPage() {
   const pathname = usePathname();
@@ -369,7 +371,7 @@ export default function QuizPage() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [showCompletionMessage, setShowCompletionMessage] = useState(false);
   const [finalMessage, setFinalMessage] = useState(false);
-  const [bgColor, setBgColor] = useState('');
+  const [bgColor, setBgColor] = useState("");
 
   useEffect(() => {
     const segments = pathname.split("/").filter(Boolean);
@@ -443,17 +445,16 @@ export default function QuizPage() {
     setIsCorrect(correct);
     setShowResultCard(true); // Show the result card
 
-
     const correctAnswerSound = new Audio("/sound/correctAnswer.mp3");
-    
+
     const randomIndex = Math.floor(Math.random() * flashCardBg.length);
     setBgColor(flashCardBg[randomIndex]);
 
-     if (correct) {
-    correctAnswerSound.play(); // Play the correct answer sound
-  } else {
-    navigator.vibrate(200); // Vibrate the device for a wrong answer (200 milliseconds)
-  }
+    if (correct) {
+      correctAnswerSound.play(); // Play the correct answer sound
+    } else {
+      navigator.vibrate(200); // Vibrate the device for a wrong answer (200 milliseconds)
+    }
 
     // Reset selected answer for the next question
     setSelectedAnswer(null);
@@ -478,8 +479,9 @@ export default function QuizPage() {
       const segments = pathname.split("/").filter(Boolean);
       const subjectId = segments[1];
       const chapterId = segments[2];
-      const nextLevelIndex = chapter.levels.findIndex((lvl) => lvl.id === level.id) + 1;
-  
+      const nextLevelIndex =
+        chapter.levels.findIndex((lvl) => lvl.id === level.id) + 1;
+
       if (nextLevelIndex >= chapter.levels.length) {
         // If all levels in the chapter are completed, set finalMessage to true.
         setFinalMessage(true);
@@ -488,7 +490,7 @@ export default function QuizPage() {
     }
     setShowResultCard(false); // Hide the result card after each question.
   };
-  
+
   const levelCompletionSound = new Audio("/sound/levelCompletion.mp3");
 
   const handleNextLevel = () => {
@@ -497,12 +499,12 @@ export default function QuizPage() {
     const chapterId = segments[2];
     const nextLevelIndex =
       chapter.levels.findIndex((lvl) => lvl.id === level.id) + 1;
-  
+
     if (nextLevelIndex < chapter.levels.length) {
       // Navigate to the next level when the user clicks the button.
       const nextLevelId = chapter.levels[nextLevelIndex].id;
       router.push(`/subjects/${subjectId}/${chapterId}/${nextLevelId}`);
-  
+
       // Reset states for the next level.
       setCurrentQuestionIndex(0); // Reset question index for the next level.
       setScore(0); // Optionally, reset the score if needed.
@@ -512,17 +514,14 @@ export default function QuizPage() {
       // If all levels in the chapter are completed, show a final message.
       setFinalMessage(true);
       // alert("Congratulations! You have completed all levels in this chapter.");
-      router.push('/subjects')
+      router.push("/subjects");
       // Optionally, navigate to a chapter summary or back to the chapter list.
-
     }
     // levelCompletionSound.play().catch((error) => {
     //   console.error("Failed to play level completion sound:", error);
     // });
-  
   };
 
-  
   const handleCancel = () => {
     setShowResultCard(false); // Hide the result card
   };
@@ -555,14 +554,12 @@ export default function QuizPage() {
   };
 
   const flashCardBg = [
-    'bg-[#69B3B6]',
-    'bg-[#7569B6]',
-    'bg-[#899DD5]',
-    'bg-[#FA8A5A]',
-    'bg-[#4F74EE]',
+    "bg-[#69B3B6]",
+    "bg-[#7569B6]",
+    "bg-[#899DD5]",
+    "bg-[#FA8A5A]",
+    "bg-[#4F74EE]",
   ];
-
-
 
   return (
     <motion.div
@@ -662,17 +659,19 @@ export default function QuizPage() {
               transition={{ duration: 0.2, ease: "easeInOut" }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="w-10 h-10 rounded-full  absolute top-5 left-5 ">
-              <LottieAnimations animationData={flash} />
-
+              <div className="w-6 h-6 rounded-full bg-white absolute top-5 left-5 flex items-center justify-center">
+                <div className="w-3 h-3 rounded-full bg-[#69B683] absolute "></div>
               </div>
               <div>
-              {isCorrect ? (<Check className="text-white " strokeWidth={4} size={40} />):(<CircleX className="text-red-600" strokeWidth={3} size={40}/>)}
-               
-            </div>
+                {isCorrect ? (
+                  <LottieAnimation animationData={tick}  className='w-20'/>
+                ) : (
+                  <LottieAnimation animationData={wrong}  className='w-20'/>
+                )}
+              </div>
               <span
                 className={`text-lg font-bold ${
-                  isCorrect ? "text-white" : "text-red-500"
+                  isCorrect ? "text-white" : "text-red-600"
                 }`}
               >
                 {isCorrect ? "Correct Answer!" : "Wrong Answer"}
@@ -688,15 +687,14 @@ export default function QuizPage() {
                   >
                     Next
                   </button>
-                ):(
+                ) : (
                   <button
                     onClick={handleCancel} // Hide the result card
                     className="w-full h-14 bg-black text-white font-bold text-lg rounded-full"
                   >
                     Try again
                   </button>
-                )
-                }
+                )}
               </div>
             </motion.div>
           </div>
@@ -715,56 +713,47 @@ export default function QuizPage() {
               {finalMessage ? (
                 <div className="flex flex-col items-center justify-center gap-5">
                   <LottieAnimations
-                animationData={hooray}
-                loop={true}
-                className="-mt-10 w-20"
-                style={{ width: 200, height: 200 }}
-              />
-              <h2 className="text-white font-bold text-xl -mt-10">
-                Hooraayyy!
-              </h2>
-                
-                <p className="text-white text-center my-1">
-                 
-               
-                      You have completed all the levels. Go to next topic!
-                   
-                 
-                </p>
-                <div
-                  className="w-36 h-14 flex items-center justify-center bg-[#75BC7B] text-white font-semibold text-lg rounded-full mt-"
-                  onClick={handleNextLevel}
-                >
-                  Next Topic
+                    animationData={hooray}
+                    loop={true}
+                    className="-mt-10 w-20"
+                    style={{ width: 200, height: 200 }}
+                  />
+                  <h2 className="text-white font-bold text-xl -mt-10">
+                    Hooraayyy!
+                  </h2>
+
+                  <p className="text-white text-center my-1">
+                    You have completed all the levels. Go to next topic!
+                  </p>
+                  <div
+                    className="w-36 h-14 flex items-center justify-center bg-[#75BC7B] text-white font-semibold text-lg rounded-full mt-"
+                    onClick={handleNextLevel}
+                  >
+                    Next Topic
+                  </div>
                 </div>
-                </div>
-              ):(
+              ) : (
                 <div className="flex flex-col items-center justify-center gap-5">
                   <LottieAnimations
-                animationData={congratulations}
-                loop={true}
-                className="-mt-20"
-              />
-                 <h2 className="text-white font-bold text-xl -mt-20">
-                Congratulations!
-              </h2>
-                <p className="text-white text-center my-1">
-                 
-               
-                      You have completed this level. Get ready for the next
-                      challenge!
-                   
-                 
-                </p>
-                <div
-                  className="w-36 h-14 flex items-center justify-center bg-[#75BC7B] text-white font-semibold text-lg rounded-full mt-"
-                  onClick={handleNextLevel}
-                >
-                  Next Level
-                </div>
+                    animationData={congratulations}
+                    loop={true}
+                    className="-mt-20"
+                  />
+                  <h2 className="text-white font-bold text-xl -mt-20">
+                    Congratulations!
+                  </h2>
+                  <p className="text-white text-center my-1">
+                    You have completed this level. Get ready for the next
+                    challenge!
+                  </p>
+                  <div
+                    className="w-36 h-14 flex items-center justify-center bg-[#75BC7B] text-white font-semibold text-lg rounded-full mt-"
+                    onClick={handleNextLevel}
+                  >
+                    Next Level
+                  </div>
                 </div>
               )}
-              
             </motion.div>
           </div>
         )}
